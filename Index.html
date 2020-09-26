@@ -204,12 +204,26 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <h2 class="w3-wide">Despacho a Domicilio</h2>
       <p>Porfavor ingrese sus datos para poder enviarle su Pedido.</p>
       <p><input class="w3-input w3-border" type="text" placeholder="Nombre completo"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Correoelectronico"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Calle"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Correo-electronico"></p>
+
+      <p><label for="regiones" class="w3-label w3-border" placeholder="region"></label>
+        <select id="regiones" name="regiones">
+          <option value="valpo">valpo</option>
+          <option value="sure">sure</option>
+          <option value="norte">norte</option>
+          <option value="santiago">santiago</option>
+        </select>
+      
+      
+      
+      </p>
+
+      <p><input class="w3-input w3-border" type="text" placeholder="Calle"> <input class="w3-input w3-border" type="number" placeholder="Numero de casa"></p>
       <p><input class="w3-input w3-border" type="text" placeholder="Comuna"></p>
       <p><input class="w3-input w3-border" type="text" placeholder="Ciudad"></p>
       <p><input class="w3-input w3-border" type="text" placeholder="Provincia"></p>
-      <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Subscribe</button>
+          <button type="button" class="w3-button w3-padding-mediun w3-red w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Anular/Cancelar</button>
+          <button type="button" class="w3-button w3-padding-large w3-green w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Ir a Metodos de pago</button>
     </div>
   </div>
 </div>
