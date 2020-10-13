@@ -1,6 +1,7 @@
 {
   "name": "RestApi",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js"
@@ -17,14 +18,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mrmiguel564/VinotecaG2.git"
-  },
-  "bugs": {
-    "url": "https://github.com/mrmiguel564/VinotecaG2/issues"
-  },
-  "homepage": "https://github.com/mrmiguel564/VinotecaG2#readme",
-  "description": ""
+  }
 }
