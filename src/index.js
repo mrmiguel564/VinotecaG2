@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 //      //res.sendFile(path.join(__dirname,'views/index.html'));
 //      //console.log(path.join(__dirname,'views/index.html'));
 // });
-app.use(require('./routes/jugador'));
+app.use(require('./routes/vinoteca'));
 
 // Iniciando Servidor
 app.listen(app.get('port'), () => {
