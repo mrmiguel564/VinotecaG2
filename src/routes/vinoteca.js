@@ -14,7 +14,11 @@ router.get('/', (req,res) => {
 
 
 router.get('/contacto', (req,res) => {
-    res.render('contacto.ejs',{title: 'Pagina de Contacto'});
+    res.render('contacto.ejs',{title: 'Pagina de contacto'});
+});
+
+router.get('/Admin', (req,res) => {
+    res.render('Admin.ejs',{title: 'Pagina del Administrador de Vinoteca'});
 });
 
 //router.post('/ingresar',(req, res) => {
