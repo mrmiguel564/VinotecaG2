@@ -32,14 +32,16 @@ conn.query("select compra.correo,compra.id_compra, direccion_envio.comuna from c
     console.log(res);
 }); 
 
-conn.query("select usuario.nombre, compra.id_compra, compra.pago_total from usuario join compra where compra.pago_total >4000 and usuario.correo = 'mauriciofaker@gmail.com' and compra.correo ='mauriciofaker@gmail.com'",(err,res,campos)=>{
-    if(err) throw err;
-    console.log(res);
-}); 
+//conn.query("select usuario.nombre, compra.id_compra, compra.pago_total from usuario join compra where compra.pago_total >4000 and usuario.correo = 'mauriciofaker@gmail.com' and compra.correo ='mauriciofaker@gmail.com'",(err,res,campos)=>{
+//    if(err) throw err;
+//    console.log(res);
+//}); 
 
 //conn.query("update usuario set nombre = 'Mauricio De Juan' where nombre='Mauricio de juan';",(err,res,campos)=>{
 //    if(err) throw err;
 //    console.log(res);
 //}); 
+
+
 
 module.exports = conn;
