@@ -6,16 +6,20 @@ const conn = require('../database'); // Buscando el archivo de conf de la base d
 router.get('/', (req,res) => {
     //res.render('index.ejs');
     conn.query('Select * from producto', (err,resp,campos) => {
-        console.log(resp);
+        //console.log(resp);
         res.render('vinoteca.ejs',   { datos: resp });
     });
     
 });
 
-
 router.get('/contacto', (req,res) => {
-    res.render('contacto.ejs',{title: 'Pagina de Contacto'});
+    res.render('contacto.ejs',{title: 'Pagina de contacto'});
 });
+
+router.get('/admin', (req,res) => {
+    res.render('Admin.ejs',{title: 'Pagina del Administrador de Vinoteca'});
+});
+
 
 //router.post('/ingresar',(req, res) => {
 //    //console.log(req.body);
