@@ -20,7 +20,36 @@ router.get('/admin', (req,res) => {
     res.render('Admin.ejs',{title: 'Pagina del Administrador de Vinoteca'});
 });
 
+router.get('/eliminar/:id', (req,res) =>{
+    const { id } = req.params;
+    conn.query('DELETE from jugador WHERE id_jugador = ?', [id], (err, resp, campos) => {
+        if(!err){
+            //res.json(resp); Mostar Arreglo Json
+            //res.json(resp[0]); //Mostrar Objeto 
+            res.redirect('/')
+        }else{
+            console.log(err);
+        }
+    });
+});
 
+router.get('/login', (req,res) =>{
+    res.render('login.ejs');
+});
+
+router.post('/login',passport.authenticate('local',{
+    successRedirect: "/correcto",
+    failureRedirect: "/login"
+}));
+
+router.get('/correcto', (req,res,next)=>{
+    if(req.isAuthenticated()) return next();
+    
+    res.redirect('/login');
+},(req,res) =>{
+    res.render('ingreso.ejs');
+});
+module.exports = router;
 //router.post('/ingresar',(req, res) => {
 //    //console.log(req.body);
 //    const {id_jugador, nombre, apellido} = req.body;
