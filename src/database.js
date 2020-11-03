@@ -2,7 +2,8 @@ const mysql = require('mysql');
 
 const conn = mysql.createConnection({
     host: 'localhost',
-    database: 'vinoteca'
+    user: 'root',
+    database: 'vinotecaonline'
 });
 
 conn.connect(function (err){
@@ -141,15 +142,15 @@ conn.query("select productos_compra.id_producto, producto.nombre, producto.preci
 	console.log(res);
 });
 //10.-
-//conn.query("create USER 'mauricio'@'localhost' IDENTIFIED BY 'pass_tbd'", (err,res,campos) =>{
-//	if(err) throw err;
-//	console.log(res);
-//});
+conn.query("create USER 'mauricio'@'localhost' IDENTIFIED BY 'pass_tbd'", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
 //11.-
-//conn.query("drop user 'mauricio'@'localhost'", (err,res,campos) =>{
-//	if(err) throw err;
-//	console.log(res);
-//});
+conn.query("drop user 'mauricio'@'localhost'", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
 
 
 //Consultas etapa 3

@@ -53,7 +53,7 @@
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
         <input id="precio" type="number" class="w3-half w3- form-control" name="precio" placeholder="precio CLP">
       </div>
-      <label>Producto activo: 1 es para true, 0 es para false </label><br>
+      <label>Producto activo en la web: 1 es para true, 0 es para false </label><br>
       <div class="w3-row padding">
         <div class="w3-third ">
           <input id="activo" class="w3-radio" type="radio" name="activo" value="1" checked>
@@ -119,29 +119,7 @@
 
 
 <br> 
-<!---- eliminar productos  ---->
-<div class='row'>
-  <div class='col-md-6 mt-4 text-center'>
-      <table class='table table-striped'>
-          <tr>
-              <th>ID</th>
-              <th>NOMBRE</th>
-              <th>APELLIDO</th>
-              <th>Fecha Nac</th>
-              <th>OPCIONES</th>
-          </tr>
-          <% for(var i = 0; i < datos.length; i++){ %>
-             <tr>
-                 <td><%= datos[i].id_jugador %></td>
-                 <td><%= datos[i].nombre %></td>
-                 <td><%= datos[i].apellido %></td>
-                 <td><%= datos[i].fecha_nacimiento %></td>
-                 <td><a href="/eliminar/<%= datos[i].id_jugador %>">Eliminar</a></td>
-             </tr> 
-          <% } %>
-      </table>
-  </div>
-  
+
 
 <script>
 function w3_open() {
@@ -169,6 +147,6 @@ function openNav(id) {
 <script>
 w3CodeColor();
 </script>
- 
+
 </body>
 </html> 

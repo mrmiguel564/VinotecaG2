@@ -24,17 +24,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new PassportLocal(function(username,password,done){
-
-     conn.query('Select * from usuario', (err,resp,campos) => {
-          console.log(resp);      
-          for(var i = 0; i < resp.length; i++)
-    if(username ===  resp[i].mail && password === resp[i].password)
-     return done(null,{id:1, name: resp[i].nombre, rol: resp[i].rol });
+    if(username === "programacionweb" && password === "987654321")
+    
+     return done(null,{id:1, name: "Manuel"});
 
      done(null,false);
-     });
 }));
-
 //Serialización, parar la información para identificar usuario en passport
 passport.serializeUser(function(user,done){
      done(null,user.id);
@@ -44,6 +39,8 @@ passport.deserializeUser(function(id,done){
      done(null, {id:1, name: "Manuel"})
 });
 
+
+// Rutas (URL)
 app.use(require('./routes/vinoteca'));
 
 // Iniciando Servidor
