@@ -1,10 +1,9 @@
 const mysql = require('mysql');
 
 const conn = mysql.createConnection({
-    host: 'mrmiguel.ddns.net',
-    user: 'admin',
-    password: '7epBwKuwyEMC9Lu0',
-    database: 'vinoteca'
+    host: 'localhost',
+    user: 'root',
+    database: 'vinotecaonline'
 });
 
 conn.connect(function (err){
@@ -138,7 +137,7 @@ conn.query("SELECT usuario.correo, Count(producto_carrito.id_producto) AS Numero
 	console.log(res);
 });
 //9.- (ver esta consulta porque no arroja bien los datos)
-conn.query("select producto_compra.id_producto, producto.nombre, producto.precio from producto join producto_compra where producto.id_producto = producto_compra.id_compra in (1,2,3,4)", (err,res,campos) =>{
+conn.query("select productos_compra.id_producto, producto.nombre, producto.precio from producto join productos_compra where producto.id_producto = productos_compra.id_compra not in (1,2,3,4)", (err,res,campos) =>{
 	if(err) throw err;
 	console.log(res);
 });
