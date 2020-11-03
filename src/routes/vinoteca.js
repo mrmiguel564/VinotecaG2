@@ -16,9 +16,15 @@ router.get('/', (req,res) => {
 router.get('/contacto', (req,res) => {
     res.render('contacto.ejs',{title: 'Pagina de contacto'});
 });
+router.get('/prueba', (req,res) => {
+    res.render('prueba.ejs',{title: 'Pagina de contacto'});
+});
 
 router.get('/admin', (req,res) => {
-    res.render('Admin.ejs',{title: 'Pagina del Administrador de Vinoteca'});
+    conn.query('Select * from producto', (err,resp,campos) => {
+        //console.log(resp);
+        res.render('admin.ejs',   { datos: resp });
+    });
 });
 
 router.get('/login', (req,res) => {
@@ -30,7 +36,7 @@ router.get('/eliminar/:id_producto', (req,res) =>{
     const { id_producto } = req.params;
     conn.query('DELETE from producto WHERE id_producto = ?', [id_producto], (err, resp, campos) => {
         if(!err){
-            console.log("estoy aqui")
+            console.log("producto eliminado")
             res.redirect('/admin')
         }else{
             console.log(err);
@@ -38,24 +44,44 @@ router.get('/eliminar/:id_producto', (req,res) =>{
     });
 });
 
-
-//router.post('/ingresar',(req, res) => {
-//    //console.log(req.body);
-//    const {id_jugador, nombre, apellido} = req.body;
-//    conn.query('INSERT into jugador SET? ',{
-//        id_jugador: id_jugador,
-//        nombre: nombre,
-//        apellido: apellido,
-//        fecha_nacimiento: new Date()
-//   }, (err, result) => {
-//        if(!err) {
-//            res.redirect('/');
-//        } else {
+//router.post('/ingresar', (req,res) =>{
+//    
+//    conn.query('INSERT into producto VALUES ?', post , (err, resp, campos) => {
+//        if(!err){
+//            res.redirect('/admin')
+//        }else{
 //            console.log(err);
 //        }
 //    });
 //});
 
+router.post('/ingresa',(req, res) => {
+    //console.log(req.body);
+    const {nombre, precio, activo, descripcion,} = req.body;
+    conn.query('INSERT into producto SET? ',{
+        nombre: nombre,
+        precio: precio,
+        activo: activo,
+        descripcion : descripcion,
+    }, (err, result) => {
+        if(!err) {
+            res.redirect('/admin');
+            console.log("Datos agregados con exito");
+            console.log(result);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
+// router.get('/', (req,res) => {
+//     //res.render('listad.ejs');
+//     conn.query('Select * from producto', (err,resp,campos) => {
+//         //console.log(resp);
+//         console.log("estoy dentro")
+//         res.render('admin.ejs',  {datitos: resp});
+//     });
+// });
 
 
 // router.post('/',(req, res) => {
