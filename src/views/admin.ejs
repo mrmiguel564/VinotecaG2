@@ -18,10 +18,10 @@
 
 <div class="w3-bar-block">
   <a class="w3-button w3-hover-teal w3-hide-large w3-large w3-right" href="javascript:void(0)" onclick="w3_close()">×</a>
-  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#" >Vinoteca</a>
-  <a class="w3-bar-item w3-button" href="#">productos</a>
-  <a class="w3-bar-item w3-button" href="#">personas</a>
-  <a class="w3-bar-item w3-button" href="#">compras</a>
+  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="/admin">Vinoteca</a>
+  <a class="w3-bar-item w3-button" href="/admin/productos">productos</a>
+  <a class="w3-bar-item w3-button" href="/admin/personas">personas</a>
+  <a class="w3-bar-item w3-button" href="/admin/compras">compras</a>
 </div>
 </div>
 
@@ -54,23 +54,29 @@
         <input id="precio" type="number" class="w3-half w3- form-control" name="precio" placeholder="precio CLP">
       </div>
       <label>Producto activo: 1 es para true, 0 es para false </label><br>
-      <div class="input-group"> <!-- hay que modificar esto porque no se como ponerlo con radio select-->
-        <select multiple class="form-control" id="activo" name="activo">
-          <option>1</option>
-          <option>0</option>
-        </select>
+      <div class="w3-row padding">
+        <div class="w3-third ">
+          <input id="activo" class="w3-radio" type="radio" name="activo" value="1" checked>
+        <label>true</label>
+        <br>
+        </div>
+        <div class="w3-third">
+          <input id="activo" class="w3-radio" type="radio" name="activo" value="0" checked>
+          <label>false</label>
+          <br>
+        </div>
       </div>
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
         <input id="descripcion" type="text" class="form-control" name="descripcion" placeholder="Descripcion">
       </div>
-      <input type="submit" value="Confirmar" style="width:100px;height:30px;background-color:green;color:white;font-size:10pt; font-family:Verdana;text-align:center;position:absolute;right:800px;bottom:150px">
+      <input type="submit" value="Confirmar" style="width:100px;height:30px;background-color:green;color:white;font-size:10pt; font-family:Verdana;text-align:center;position:absolute;right:800px;bottom:200px">
     </div>
   </form> 
 </div>
   <form action="/admin" method="get" class="card-body">
     <div class="w3-padding-16">
-      <input type="submit" value="Cancelar" style="width:100px;height:30px;background-color:green;color:white;font-size:10pt; font-family:Verdana;text-align:center;position:absolute;right:600px;bottom:150px">
+      <input type="submit" value="Cancelar" style="width:100px;height:30px;background-color:green;color:white;font-size:10pt; font-family:Verdana;text-align:center;position:absolute;right:600px;bottom:200px">
       <br>
     </div>
   </form>
