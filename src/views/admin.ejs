@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title>Pagina Administrador</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -33,74 +33,84 @@
 <div class="w3-top w3-theme w3-large w3-hide-large">
   <i class="fa fa-bars w3-button w3-teal w3-xlarge" onclick="w3_open()"></i>
 </div>
-
 <header class="w3-container w3-theme w3-padding-32 w3-center">
-  <h1 class="w3-xxxlarge w3-padding-16">vinoteca Admin </h1>
+  <h1 class="w3-xxxlarge w3-padding-16">Vinoteca Admin </h1>
 </header>
 
-<div class="w3-container w3-padding w3-section w3-light-grey">
+<div class="w3-container w3-padding w3-section w3-light-grey w3-center">
   <h1 class="w3-xlarge">Agregar producto</h1>
 </div>
 
-<form action="/ingresar" method="post" class="card-body">
-  <div class="w3-row padding">
+
+  <div class="w3-row padding ">
     <div class="w3-half w3-container">
-      <div class="input-group">
+      <form action="/ingresa" method="post" class="card-body">
+      <div class="input-group ">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
         <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Nombre producto">
       </div>
-      
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input id="precio" type="password" class="form-control" name="precio" placeholder="precio clp">
+        <input id="precio" type="number" class="w3-half w3- form-control" name="precio" placeholder="precio CLP">
       </div>
-      
+      <label>Producto activo: 1 es para true, 0 es para false </label><br>
+      <div class="input-group"> <!-- hay que modificar esto porque no se como ponerlo con radio select-->
+        <select multiple class="form-control" id="activo" name="activo">
+          <option>1</option>
+          <option>0</option>
+        </select>
+      </div>
       <div class="input-group">
-        <span class="input-group-addon">Text</span>
-        <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+        <input id="descripcion" type="text" class="form-control" name="descripcion" placeholder="Descripcion">
       </div>
-      
+      <input type="submit" value="Confirmar" style="width:100px;height:30px;background-color:green;color:white;font-size:10pt; font-family:Verdana;text-align:center;position:absolute;right:800px;bottom:150px">
     </div>
-    <div class="w3-half w3-container">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Nombre producto">
-      </div>
-      
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input id="precio" type="password" class="form-control" name="precio" placeholder="precio clp">
-      </div>
-      
-      <div class="input-group">
-        <span class="input-group-addon">Text</span>
-        <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
-      </div>
-      
-
+  </form> 
 </div>
-</div>
-
-  <div class="w3-row padding">
-    <div class="w3-third ">
-      <input id="male" class="w3-radio" type="radio" name="gender" value="male" checked>
-    <label>vino</label>
-    <br>
-
-    </div>
-    <div class="w3-third">
-      <input id="male" class="w3-radio" type="radio" name="gender" value="male" checked>
-      <label>wysky</label>
+  <form action="/admin" method="get" class="card-body">
+    <div class="w3-padding-16">
+      <input type="submit" value="Cancelar" style="width:100px;height:30px;background-color:green;color:white;font-size:10pt; font-family:Verdana;text-align:center;position:absolute;right:600px;bottom:150px">
       <br>
     </div>
-    <div class="w3-third">
-      <input id="male" class="w3-radio" type="radio" name="gender" value="male" checked>
-    <label>chela</label>
-    <br>
-    </div>
+  </form>
+  <div class="w3-container w3-padding w3-section w3-light-grey w3-center">
+    <h1 class="w3-xlarge">Eliminar producto</h1>
   </div>
+  <div class='col-md-6 mt-4 text-center'>
+    <table class='table table-striped'>
+        <tr>
+            <th>ID_producto</th>
+            <th>Nombre</th>
+            <th>precio</th>
+            <th>activo</th>
+            <th>descripcion</th>
+        </tr>
+        <% for(var i = 0; i < datos.length; i++){ %>
+           <tr>
+               <td><%= datos[i].id_producto %> <% i %></td>
+               <td><%= datos[i].nombre %></td>
+               <td><%= datos[i].precio %></td>
+               <td><%= datos[i].activo %></td>
+               <td><%= datos[i].Descripcion %></td>
+               
+               <td>
+                
+                <form action="/eliminar/<%=datos[i].id_producto%>"  method="get" class="card-body">
+                <div class="w3-padding-16">
+                  <input type="submit" value="Eliminar" style="width:100px;height:30px;background-color:green;color:white;font-size:10pt; font-family:Verdana;text-align:center;position:absolute">
+                  <br>
+                </div>
+              </form> 
+              </td>
+           </tr> 
+        <% } %>
+    </table>
+</div>
+
+
   </div>
-</form>
+
 
 <br> 
 
@@ -123,6 +133,7 @@ function openNav(id) {
   document.getElementById("nav03").style.display = "none";
   document.getElementById(id).style.display = "block";
 }
+
 </script>
 
 <script src="https://www.w3schools.com/lib/w3codecolor.js"></script>
