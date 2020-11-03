@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
-const conn = require('../database'); // Buscando el archivo de conf de la base de datos
+ // Buscando el archivo de conf de la base de datos
 
 router.get('/', (req,res) => {
     //res.render('index.ejs');
@@ -31,8 +31,7 @@ router.get('/login', (req,res) => {
     res.render('login.ejs',{title: 'chequeo del login'});
 });
 
-router.get('/eliminar/:id_producto', (req,res) =>{
-    
+router.get('/eliminar/:id_producto', (req,res) =>{    
     const { id_producto } = req.params;
     conn.query('DELETE from producto WHERE id_producto = ?', [id_producto], (err, resp, campos) => {
         if(!err){

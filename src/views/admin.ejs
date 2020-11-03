@@ -119,7 +119,29 @@
 
 
 <br> 
-
+<!---- eliminar productos  ---->
+<div class='row'>
+  <div class='col-md-6 mt-4 text-center'>
+      <table class='table table-striped'>
+          <tr>
+              <th>ID</th>
+              <th>NOMBRE</th>
+              <th>APELLIDO</th>
+              <th>Fecha Nac</th>
+              <th>OPCIONES</th>
+          </tr>
+          <% for(var i = 0; i < datos.length; i++){ %>
+             <tr>
+                 <td><%= datos[i].id_jugador %></td>
+                 <td><%= datos[i].nombre %></td>
+                 <td><%= datos[i].apellido %></td>
+                 <td><%= datos[i].fecha_nacimiento %></td>
+                 <td><a href="/eliminar/<%= datos[i].id_jugador %>">Eliminar</a></td>
+             </tr> 
+          <% } %>
+      </table>
+  </div>
+  
 
 <script>
 function w3_open() {
@@ -147,6 +169,6 @@ function openNav(id) {
 <script>
 w3CodeColor();
 </script>
-
+ 
 </body>
 </html> 
