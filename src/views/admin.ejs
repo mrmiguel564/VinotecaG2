@@ -44,7 +44,7 @@
 
   <div class="w3-row padding ">
     <div class="w3-half w3-container">
-      <form action="/ingresa" method="post" class="card-body">
+      <form action="/ingresa/productos" method="post" class="card-body">
       <div class="input-group ">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
         <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Nombre producto">
@@ -91,6 +91,7 @@
             <th>precio</th>
             <th>activo</th>
             <th>descripcion</th>
+            <th> </th>
         </tr>
         <% for(var i = 0; i < datos.length; i++){ %>
            <tr>
