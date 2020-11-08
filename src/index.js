@@ -5,7 +5,11 @@ const path = require('path');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const conn = require('./database');
 const PassportLocal = require('passport-local').Strategy;
+
+// Rutas (URL)
+app.use(require('./routes/vinoteca'));
 
 // Configuración
 app.set('port', process.env.PORT || 3000);
@@ -24,12 +28,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new PassportLocal(function(username,password,done){
-    if(username === "programacionweb" && password === "987654321")
-    
-     return done(null,{id:1, name: "Manuel"});
+     conn.query('Select * from usuario where correo = ? where password = ? where rol = administrador', [username, password] , (err,resp,campos) => {
+          console.log(resp)
+          if(resp){
+     return done(null,{id:1, name: resp.name});
+    }else{
+      done(null,false);
+    }
+     }
+)}));
 
-     done(null,false);
-}));
 //Serialización, parar la información para identificar usuario en passport
 passport.serializeUser(function(user,done){
      done(null,user.id);
@@ -40,8 +48,7 @@ passport.deserializeUser(function(id,done){
 });
 
 
-// Rutas (URL)
-app.use(require('./routes/vinoteca'));
+
 
 // Iniciando Servidor
 app.listen(app.get('port'), () => {

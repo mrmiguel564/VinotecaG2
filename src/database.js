@@ -14,6 +14,10 @@ conn.connect(function (err){
         console.log('La base de dato esta conectada')
     }
 });
+
+/* 
+
+
 //Consultas etapa 1
 //1.-
 conn.query("select * from usuario where nombre = 'Mauricio de juan'", (err,res,campos) =>{
@@ -155,6 +159,6 @@ conn.query("drop user 'mauricio'@'localhost'", (err,res,campos) =>{
 
 //Consultas etapa 3
 
-
+ */
 
 module.exports = conn;
