@@ -111,17 +111,23 @@
                   <button class="w3-button w3-black" onclick="document.getElementById('Form_compra').style.display='block'" >Comprar ahora <i class="fa fa-shopping-cart" ></i></button>
                 </div>
               </div>
-              <p><%= datos[i].nombre %><br><b><%= datos[i].precio%></b></p>
+              <p><%= datos[i].nombre %><br><b><%= datos[i].precio%></b><br><b><%= datos[i].contenido%></b></p>
             </div>
           </div>
         <% } %>
       <% } %> 
     </div>
-
-
+<p>Escriba un precio para mostrar los vinos que sean superior a los montos puestos, siempre y cuando esten en stock y tengan especificacion</p>
+<p>Si no se muestran vinos es porque no hay disponibles dentro de lo que usted puso</p>
+<form action = "/precio"  method="post" class="card-body">
+  <div class="input-group ">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input id="precio" type="number" class="form-control" name="precio" placeholder="Precio">
+    <input type="submit" class="btn btn-primary" value="Confirmar"></input>
+  </div>
+  
     <div class="w3-black w3-center w3-padding-24">Powered by <a href="https://www.w3schools.com/w3css/default.asp"
         title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
-      -->
     <!-- End page content -->
   </div>
 
@@ -195,10 +201,10 @@
         x.className = x.className.replace(" w3-show", "");
       }
     }
-
+  
+    
     // Click on the "Jeans" link on page load to open the accordion for demo purposes
     document.getElementById("myBtn").click();
-
 
     // Open and close sidebar
     function w3_open() {

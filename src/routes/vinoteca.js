@@ -10,7 +10,7 @@ router.get('/', (req,res) => {
         //console.log(resp);
         res.render('vinoteca.ejs',   { datos: resp });
     });
-    
+
 });
 //hola2 
 router.post('/login',passport.authenticate('local',{
@@ -25,12 +25,20 @@ router.get('/prueba', (req,res) => {
     res.render('prueba.ejs',{title: 'Pagina de contacto'});
 });
 
+router.get('/modificarCompras/:id_compra', (req,res) => {
+    const { id_compra } =  req.params;
+    conn.query('Select * from compra where id_compra = ?', [id_compra] , (err,resp,campos) => {
+        //console.log(resp);
+        res.render('ModificarCompras.ejs',   { datos: resp });
+    });
+});
 router.get('/admin', (req,res) => {
-    conn.query('Select * from producto', (err,resp,campos) => {
+    conn.query('SELECT usuario.correo, Count(producto_carrito.id_producto) AS NumeroPedidos FROM producto_carrito LEFT JOIN usuario ON producto_carrito.correo=usuario.correo GROUP BY usuario.nombre', (err,resp,campos) => {
         //console.log(resp);
         res.render('admin.ejs',   { datos: resp });
     });
 });
+
 router.get('/admin/productos', (req,res) => {
     conn.query('Select * from producto', (err,resp,campos) => {
         //console.log(resp);
@@ -65,6 +73,17 @@ router.get('/eliminar/:id_producto', (req,res) =>{
         }else{
             console.log(err);
         }
+    });
+});
+
+
+router.post('/precio', (req,res) =>{
+    
+    //const { dinero } = req.params;
+    const prueba = req.body;
+    console.log(prueba)
+    conn.query('select producto.nombre, producto.activo, producto.precio, especificacion.contenido from producto join especificacion on producto.id_producto = especificacion.id_producto GROUP BY producto.id_producto having producto.precio > ?', [prueba.precio], (err, resp, campos) => {
+            res.render('vinoteca.ejs',   { datos: resp });
     });
 });
 
@@ -164,6 +183,21 @@ router.post('/ingresa/compras',(req, res) => {
         }
     });
 });
+
+router.post('/modificar2/:id_compra', (req,res) =>{
+    
+    const {correo, pago_total, nombre_receptor}= datitos =  req.body;
+    const {id_compra} = req.params;
+    conn.query('UPDATE compra SET? WHERE id_compra = ?', [datitos, req.params.id_compra], (err, resp, campos) => {
+        if(!err){
+            console.log("persona actualizada")
+            res.redirect('/admin/compras')
+        }else{
+            console.log(err);
+        }
+    });
+});
+
 // router.get('/', (req,res) => {
 //     //res.render('listad.ejs');
 //     conn.query('Select * from producto', (err,resp,campos) => {

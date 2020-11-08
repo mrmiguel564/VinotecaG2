@@ -136,7 +136,7 @@ conn.query("SELECT usuario.correo, Count(producto_carrito.id_producto) AS Numero
 	if(err) throw err;
 	console.log(res);
 });
-//9.- (ver esta consulta porque no arroja bien los datos)
+//9.- 
 conn.query("select productos_compra.id_producto, producto.nombre, producto.precio from producto join productos_compra where producto.id_producto = productos_compra.id_compra not in (1,2,3,4)", (err,res,campos) =>{
 	if(err) throw err;
 	console.log(res);
