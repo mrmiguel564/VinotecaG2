@@ -26,11 +26,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new PassportLocal(function(username,password,done){
-<<<<<<< HEAD
-    if(username === "programacionweb" && password === "987654321")
-    
-     return done(null,{id:1, name: "Manuel"});
-=======
  
      
      if(username === "programacionweb" && password === "987654321")
@@ -50,12 +45,8 @@ passport.use(new PassportLocal(function(username,password,done){
     }
      }
 )})); 
+
 */
-
->>>>>>> 4f7c23bda88c9a46f7ea8b1e99bd6a6ba23db268
-
-     done(null,false);
-}));
 //Serialización, parar la información para identificar usuario en passport
 passport.serializeUser(function(user,done){
      done(null,user.id);
