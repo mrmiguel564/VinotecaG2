@@ -13,6 +13,8 @@ app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs'); 
 
 // Middleware (funciones que se procesan antes de llegar a rutas)
+
+app.use(express.urlencoded({ extended: true}))
 app.use(express.json()); //Transfomar a formato JSON 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser('el secreto'));
@@ -24,9 +26,33 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new PassportLocal(function(username,password,done){
+<<<<<<< HEAD
     if(username === "programacionweb" && password === "987654321")
     
      return done(null,{id:1, name: "Manuel"});
+=======
+ 
+     
+     if(username === "programacionweb" && password === "987654321")
+    
+     return done(null,{id:1, name: "Manuel"});
+
+     done(null,false);
+}));
+    
+/*
+     conn.query('Select * from usuario where correo = ? and password = ? and rol = "administrador"', [username, password] , (err,resp,campos) => {
+          console.log(resp)
+          if(resp){
+     return done(null,{id:1, name: resp.name});
+    }else{
+      done(null,false);
+    }
+     }
+)})); 
+*/
+
+>>>>>>> 4f7c23bda88c9a46f7ea8b1e99bd6a6ba23db268
 
      done(null,false);
 }));
