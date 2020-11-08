@@ -17,6 +17,8 @@ app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs'); 
 
 // Middleware (funciones que se procesan antes de llegar a rutas)
+
+app.use(express.urlencoded({ extended: true}))
 app.use(express.json()); //Transfomar a formato JSON 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser('el secreto'));
@@ -28,7 +30,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new PassportLocal(function(username,password,done){
-     conn.query('Select * from usuario where correo = ? where password = ? where rol = administrador', [username, password] , (err,resp,campos) => {
+ 
+     
+     if(username === "programacionweb" && password === "987654321")
+    
+     return done(null,{id:1, name: "Manuel"});
+
+     done(null,false);
+}));
+    
+/*
+     conn.query('Select * from usuario where correo = ? and password = ? and rol = "administrador"', [username, password] , (err,resp,campos) => {
           console.log(resp)
           if(resp){
      return done(null,{id:1, name: resp.name});
@@ -36,7 +48,9 @@ passport.use(new PassportLocal(function(username,password,done){
       done(null,false);
     }
      }
-)}));
+)})); 
+*/
+
 
 //Serialización, parar la información para identificar usuario en passport
 passport.serializeUser(function(user,done){

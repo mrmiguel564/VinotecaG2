@@ -13,13 +13,25 @@ router.get('/', (req,res) => {
 
 });
 //hola2 
+router.get('/login', (req,res) =>{
+    res.render('login.ejs');
+});
+
 router.post('/login',passport.authenticate('local',{
-
-    
-
-    successRedirect: "/correcto",
+    successRedirect: "/admin",
     failureRedirect: "/login"
 }));
+
+router.get('/correcto', (req,res,next)=>{
+    if(req.isAuthenticated()) return next();
+    
+    res.redirect('/login');
+},(req,res) =>{
+    res.render('ingreso.ejs');
+});
+
+
+
 
 router.get('/contacto', (req,res) => {
     res.render('contacto.ejs',{title: 'Pagina de contacto'});
