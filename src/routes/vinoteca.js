@@ -14,9 +14,6 @@ router.get('/', (req,res) => {
 });
 //hola2 
 router.post('/login',passport.authenticate('local',{
-
-    
-
     successRedirect: "/correcto",
     failureRedirect: "/login"
 }));
