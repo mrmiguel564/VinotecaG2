@@ -18,11 +18,6 @@ router.get('/login', (req,res) =>{
 });
 
 router.post('/login',passport.authenticate('local',{
-<<<<<<< HEAD
-    successRedirect: "/correcto",
-    failureRedirect: "/login"
-}));
-=======
     successRedirect: "/admin",
     failureRedirect: "/login"
 }));
@@ -37,7 +32,6 @@ router.get('/correcto', (req,res,next)=>{
 
 
 
->>>>>>> 4f7c23bda88c9a46f7ea8b1e99bd6a6ba23db268
 
 router.get('/contacto', (req,res) => {
     res.render('contacto.ejs',{title: 'Pagina de contacto'});
