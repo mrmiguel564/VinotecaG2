@@ -40,8 +40,7 @@
 <div class="w3-container w3-padding w3-section w3-light-grey w3-center">
   <h1 class="w3-xlarge">Modificar compra</h1>
 </div>
-
-<p>Si usted quiere modificar el archivo, tiene que ingresar todos los datos de nuevo, sea cuidadoso</p>
+<p> Modifique la persona segun los datos que usted necesite cambiar</p>
   <div class="w3-row padding ">
     
     <div class="w3-half w3-container">
@@ -49,15 +48,15 @@
       <form action="/modificar2/<%=datos[i].id_compra%>" method="post" class="card-body">
       <div class="input-group ">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input id="correo" type="text" class="form-control" name="correo" placeholder="Correo de la persona">
+        <input id="correo" type="text" class="form-control" value="<%=datos[i].correo%>" name="correo" placeholder="Correo de la persona">
       </div>
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-        <input id="pago_total" type="number" class="form-control" name="pago_total" placeholder="Pago total Clp">
+        <input id="pago_total" type="number" class="form-control" value="<%=datos[i].pago_total%>" name="pago_total" placeholder="Pago total Clp">
       </div>
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-        <input id="nombre_receptor" type="text" class="form-control" name="nombre_receptor" placeholder="Nombre de la persona receptora">
+        <input id="nombre_receptor" type="text" class="form-control"value="<%=datos[i].nombre_receptor%>" name="nombre_receptor" placeholder="Nombre de la persona receptora">
       </div>
       <input type="submit" class="btn btn-primary" value="Confirmar" ></input>
     
