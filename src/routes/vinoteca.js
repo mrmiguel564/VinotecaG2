@@ -38,20 +38,7 @@ router.get('/listo/', (req,res,next)=>{
         res.redirect('/admin');
     }else if(tipo_usuario==="cliente"){
         res.redirect('/');
-    }
-    /*conn.query('Select * from usuario where correo = ?', [idea.correo], (err,resp,campos) => {
-        //console.log(resp);
-        console.log(resp)
-        let op = require("./index.js")
-        
-        if(tipo_usuario==="administrador"){
-            res.redirect('/admin');
-        }else if(tipo_usuario==="cliente"){
-            res.redirect('/');
-        }
-    });*/
-    
-    
+    }   
 });
 
 router.get('/modificarCompras/:id_compra', (req,res,next) => {

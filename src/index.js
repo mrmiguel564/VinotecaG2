@@ -37,12 +37,10 @@ passport.use(new PassportLocal(function(username,password,done){
                      user= "asd";
                      pass ="asd";
                 }else{
-                     user = resp[0].correo
+                     user = resp[0].correo;
                      pass = resp[0].password;
                      rol  = resp[0].rol;
                      module.exports = {
-                          correo: user,
-                          password1: pass,
                           rol1: rol
                      }
                 }
