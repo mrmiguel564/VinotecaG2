@@ -41,7 +41,7 @@ passport.use(new PassportLocal(function(username,password,done){
                      pass = resp[0].password;
                      rol  = resp[0].rol;
                      module.exports = {
-                          rol1: rol
+                          rol1: rol,
                      }
                 }
             if(username === user && password ===pass){
@@ -52,6 +52,7 @@ passport.use(new PassportLocal(function(username,password,done){
            }catch(e){
                 console.log("no tengo nada")
                 done(null,false);
+                
            }
 
 
