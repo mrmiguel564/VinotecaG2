@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    database: 'vinotecaf'
+    database: 'vinoteca'
 });
 
 conn.connect(function (err){
@@ -137,7 +137,7 @@ conn.query("SELECT usuario.correo, Count(producto_carrito.id_producto) AS Numero
 	console.log(res);
 });
 //9.- 
-conn.query("select productos_compra.id_producto, producto.nombre, producto.precio from producto join productos_compra where producto.id_producto = productos_compra.id_compra not in (1,2,3,4)", (err,res,campos) =>{
+conn.query("select productos_compra.id_producto, producto.nombre, producto.precio from producto join productos_compra where producto.id_producto = productos_compra.id_producto in (1,2,3,4)", (err,res,campos) =>{
 	if(err) throw err;
 	console.log(res);
 });

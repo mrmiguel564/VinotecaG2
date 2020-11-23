@@ -58,6 +58,25 @@ router.get('/modificarCompras/:id_compra', (req,res,next) => {
         res.render('ModificarCompras.ejs',   { datos: resp });
     });
 });
+
+router.get('/modificarProductos/:id_producto', (req,res,next) => {
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    const {id_producto} =  req.params;
+    conn.query('Select * from producto where id_producto = ?', [id_producto] , (err,resp,campos) => {
+        //console.log(resp);
+        res.render('ModificarProductos.ejs',   { datos: resp });
+    });
+});
 router.get('/admin', (req,res,next) => {
     if(req.isAuthenticated()) return next();
     res.redirect('/login');
@@ -356,5 +375,29 @@ router.post('/modificar2/:id_compra', (req,res,next) =>{
     });
 });
 
+router.post('/modificar3/:id_producto', (req,res,next) =>{
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    const {nombre, precio, activo, descripcion, jpg}= datitos =  req.body;
+    const {id_producto} = req.params;
+    conn.query('UPDATE producto SET? WHERE id_producto = ?', [datitos, req.params.id_producto], (err, resp, campos) => {
+        if(!err){
+            console.log("Producto actualizado")
+            res.redirect('/admin/productos')
+        }else{
+            console.log(err);
+        }
+    });
+});
 
 module.exports = router;
