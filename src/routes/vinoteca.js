@@ -3,11 +3,9 @@ const passport = require('passport');
 const router = express.Router();
 
 const conn = require('../database'); // Buscando el archivo de conf de la base de datos
-
 router.get('/', (req,res,next) => {
     if(req.isAuthenticated()) return next();
     res.redirect('/login');
-
     //res.render('index.ejs');
     },(req,res) =>{
     conn.query('Select * from producto', (err,resp,campos) => {
@@ -16,9 +14,10 @@ router.get('/', (req,res,next) => {
     });
 
 });
-//hola2 
+
 router.get('/login', (req,res) =>{
     res.render('login.ejs');
+    
 });
 
 router.post('/login',passport.authenticate('local',{  
@@ -72,9 +71,18 @@ router.get('/admin', (req,res,next) => {
     }
     
     conn.query('SELECT usuario.correo, Count(producto_carrito.id_producto) AS NumeroPedidos FROM producto_carrito LEFT JOIN usuario ON producto_carrito.correo=usuario.correo GROUP BY usuario.nombre', (err,resp,campos) => {
-        //console.log(resp);
-        res.render('admin.ejs',   { datos: resp });
+        conn.query('SELECT MIN(producto.precio) as MenorPrecio from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp1,campos) => {
+            conn.query('SELECT MAX(producto.precio) as MayorPrecio from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp2,campos) => {
+                conn.query('SELECT AVG(producto.precio) as ElPromedioDeLosPrecios from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp3,campos) => {
+                    //console.log(resp);
+                     res.render('admin.ejs',   { datos: resp, datos1: resp1, datos2: resp2, datos3: resp3 });
+                });
+            });
+
+        });
     });
+    
+    
 });
 
 router.get('/admin/productos', (req,res,next) => {
@@ -246,12 +254,13 @@ router.post('/ingresa/productos',(req, res,next) => {
         res.redirect('/')
     }
   
-    const {nombre, precio, activo, descripcion,} = req.body;
+    const {nombre, precio, activo, descripcion, jpg} = req.body;
     conn.query('INSERT into producto SET? ',{
         nombre: nombre,
         precio: precio,
         activo: activo,
         descripcion : descripcion,
+        jpg: jpg
     }, (err, result) => {
         if(!err) {
             res.redirect('/admin/productos');

@@ -44,7 +44,7 @@
   <p>1.- En la parte superior izquierda se podra encontrar con los productos, personas y compras, para añadir actualizar y modificar</p>
   <p>2.- En el caso de compras usted no añade compras pero si puede modificarse si lo amerita </p>
   <p>3.- dentro de esta pagina usted puede ver tambien los pedidos de las personas que tienen en el carrito de compras junto con su correo</p>
-  <p>4.- En trabajos futuros se añadiran mas cosas dentro de las paginas</p>
+  <p>4.- En esta pagina tambien se pueden visualizar el mayor precio que tiene especicacion, tambien el menor y el promedio de los productos que tienen especificación</p>
   <p>IMPORTANTE: LO QUE SE MUESTRA EN ESTO NO TIENE QUE VER CON LAS COMPRAS ORIGINALES YA QUE ESTAS SON COMPRAS QUE ESTAN SIENDO PROCESADAS EN EL MOMENTO NO LAS HECHAS</p>
   
   <div class='col-md-6 mt-4 text-center'>
@@ -60,10 +60,30 @@
             </tr>
         <% } %>
     </table>
-
-
-  
-  </div>
+    <div class='col-md-6 mt-4 text-center'>
+      <table class='table table-striped'>
+          <tr>
+              <th>Menor precio productos</th>
+              <th>Mayor precio Productos</th>
+              <th>El promedio de los productos</th>
+          </tr>
+          <% for(var i = 0; i < datos1.length; i++){ %>
+              <tr>
+               <td><%=datos1[i].MenorPrecio%></td>
+              
+          <% } %>
+          <% for(var i = 0; i < datos2.length; i++){ %>
+            
+             <td><%=datos2[i].MayorPrecio%></td>
+            
+        <% } %>
+        <% for(var i = 0; i < datos3.length; i++){ %>
+          
+           <td><%=datos3[i].ElPromedioDeLosPrecios%></td>
+          </tr>
+      <% } %>
+      </table>
+      
 
 
 <br> 
