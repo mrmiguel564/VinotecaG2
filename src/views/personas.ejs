@@ -22,6 +22,7 @@
   <a class="w3-bar-item w3-button" href="/admin/productos">productos</a>
   <a class="w3-bar-item w3-button" href="/admin/personas">personas</a>
   <a class="w3-bar-item w3-button" href="/admin/compras">compras</a>
+  <a class="w3-bar-item w3-button" href="/admin/sucursales">Sucursal</a>
 </div>
 </div>
 
@@ -100,7 +101,8 @@
             <th>fecha_nacimiento</th>
             <th>rol</th>
             <th>telefono</th>
-            <th> </th>
+            <th>Eliminar </th>
+            <th>Modificar</th>
         </tr>
         <% for(var i = 0; i < datos.length; i++){ %>
            <tr>
@@ -113,6 +115,11 @@
                <td>
                 <form action="/eliminar1/<%=datos[i].correo%>"  method="get" class="card-body">
                   <input type="submit" class="btn btn-danger" value="Eliminar" ></input>
+              </form> 
+              </td>
+              <td>
+                <form action="/modificarPersonas/<%=datos[i].correo%>"  method="get" class="card-body">
+                  <input type="submit" class="btn btn-primary" value="Modificar" ></input>
               </form> 
               </td>
            </tr> 

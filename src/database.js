@@ -154,7 +154,96 @@ conn.query("drop user 'mauricio'@'localhost'", (err,res,campos) =>{
 
 
 //Consultas etapa 3
-
+//1.-
+conn.query("SELECT producto.nombre, producto.precio, producto.activo, producto.Descripcion, producto.jpg, stock.stock_producto from producto join stock on producto.id_producto = stock.id_producto GROUP by producto.id_producto having producto.precio BETWEEN 2000 and 10000", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//2.-
+conn.query("select usuario.nombre, usuario.rol, usuario.telefono, compra.pago_total from usuario join compra on usuario.correo = compra.correo GROUP by compra.pago_total", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//3.-
+conn.query("select usuario.nombre, usuario.rol, usuario.telefono, compra.pago_total from usuario join compra on usuario.correo = compra.correo GROUP by compra.pago_total having compra.pago_total > 20000", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//4.-
+conn.query("select usuario.nombre, usuario.rol, usuario.telefono, compra.pago_total from usuario join compra on usuario.correo = compra.correo GROUP by compra.pago_total having compra.pago_total BETWEEN 10000 and 25000", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//5.-
+conn.query("SELECT sucursal.nombre, sucursal.ubicacion, stock.stock_producto from sucursal join stock on sucursal.nombre = stock.nombre group By sucursal.nombre", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//6.-
+conn.query("SELECT MIN(producto.precio) as MenorPrecio from producto join especificacion on producto.id_producto = especificacion.id_producto", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//7.-
+conn.query("SELECT MAX(producto.precio) as MayorPrecio from producto join especificacion on producto.id_producto = especificacion.id_producto", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//8.-
+conn.query("SELECT AVG(producto.precio) as ElPromedioDeLosPrecios from producto join especificacion on producto.id_producto = especificacion.id_producto", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//9.-
+conn.query("select productos_compra.id_compra, compra.nombre_receptor from productos_compra join compra on compra.id_compra = productos_compra.id_compra group by productos_compra.id_compra having productos_compra.id_compra > 3", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//10.-
+conn.query("SELECT producto.nombre, stock.stock_producto, stock.nombre from producto join stock on producto.id_producto = stock.id_producto group BY producto.nombre having stock.stock_producto > 0", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//11.-
+conn.query("select usuario.correo, usuario.nombre, compra.nombre_receptor from usuario join compra on usuario.correo = compra.correo  and compra.id_compra not in (1,2,3,4,5)", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//12.-
+conn.query("select direccion_envio.comuna, direccion_envio.provincia, compra.nombre_receptor, direccion_envio.comentarios from direccion_envio join compra where compra.id_compra in (select compra.id_compra from compra where compra.id_compra = direccion_envio.id_compra and compra.id_compra = 2)", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//13.-
+conn.query("select usuario.nombre, usuario.telefono, compra.pago_total from usuario join compra where compra.correo in (SELECT compra.correo from compra where compra.correo = usuario.correo and compra.correo ='mauriciofaker@gmail.com')", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//14.-
+conn.query("select sucursal.nombre, sucursal.ubicacion, stock.stock_producto from sucursal join stock where sucursal.nombre in (select sucursal.nombre from sucursal where sucursal.nombre = stock.nombre and stock.nombre = 'vino chino')", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//15.-
+conn.query("select  usuario.nombre, producto_carrito.correo, producto_carrito.cantidad_producto from usuario join producto_carrito where usuario.correo in (select usuario.correo from usuario where producto_carrito.correo = usuario.correo and usuario.correo = 'mauriciofaker@gmail.com')", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//16.-
+conn.query("show grants for 'sonic'@'localhost'", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//17.-
+conn.query("Create role 'r1'", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
+//18.-
+conn.query("drop role 'r1'", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
 
 
 module.exports = conn;
