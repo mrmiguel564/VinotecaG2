@@ -8,14 +8,29 @@ const session = require('express-session');
 const conn = require('./database');
 const { json } = require('body-parser');
 const PassportLocal = require('passport-local').Strategy;
+const multer = require('multer');
 
+const storage = multer.diskStorage({
+     destination: path.join(__dirname,'imagen') ,
+     filename: (req, file, cb) => {
+          cb (null, file.originalname)
+     }
+})
 // Configuración
 app.set('port', process.env.PORT || 3000);
-app.set('views',path.join(__dirname,'views'));
+app.set('views', path.join(__dirname,'views'));
 app.set('view engine','ejs'); 
 
-// Middleware (funciones que se procesan antes de llegar a rutas)
 
+// Middleware (funciones que se procesan antes de llegar a rutas)
+app.use(multer({
+     storage,
+     dest: path.join(__dirname,'imagen')
+ //    fileFilter: (req, file, cb)=>{
+  //   const filetype = /jpeg|jpg|png|gif/;
+  //   }
+}).any('jpg'));
+app.use(express.static(path.join(__dirname, 'imagen') ));
 app.use(express.urlencoded({ extended: true}))
 app.use(express.json()); //Transfomar a formato JSON 
 app.use(bodyParser.urlencoded({extended: true}));

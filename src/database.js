@@ -14,6 +14,7 @@ conn.connect(function (err){
         console.log('La base de dato esta conectada')
     }
 });
+/*
 //Consultas etapa 1
 //1.-
 conn.query("select * from usuario where nombre = 'Mauricio de juan'", (err,res,campos) =>{
@@ -244,6 +245,6 @@ conn.query("drop role 'r1'", (err,res,campos) =>{
 	if(err) throw err;
 	console.log(res);
 });
-
+*/
 
 module.exports = conn;

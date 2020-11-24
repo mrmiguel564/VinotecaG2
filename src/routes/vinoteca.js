@@ -1,8 +1,9 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-
 const conn = require('../database'); // Buscando el archivo de conf de la base de datos
+const multer = require('multer');
+
 router.get('/', (req,res,next) => {
     if(req.isAuthenticated()) return next();
     res.redirect('/login');
@@ -354,14 +355,19 @@ router.get('/eliminar3/:nombre', (req,res,next) =>{
 //    });
 //});
 
-router.post('/ingresa/productos',(req, res,next) => {
+router.post('/ingresa/productos', (req, res,next) => {
+    
+    
+    console.log(req.files[0].filename);
 
     if(req.isAuthenticated()) return next();
     res.redirect('/login');
 
     //res.render('index.ejs');
     },(req,res,err) =>{
-    //console.log(req.body);
+
+ 
+
     let op = require("../index.js")
     let tipo_usuario = op.rol1;
     if(tipo_usuario==="cliente"){
@@ -374,7 +380,8 @@ router.post('/ingresa/productos',(req, res,next) => {
         precio: precio,
         activo: activo,
         descripcion : descripcion,
-        jpg: jpg
+        jpg         : req.files[0].filename,
+    
     }, (err, result) => {
         if(!err) {
             res.redirect('/admin/productos');
@@ -384,6 +391,7 @@ router.post('/ingresa/productos',(req, res,next) => {
             console.log(err);
         }
     });
+    
 });
 
 router.post('/ingresa/personas',(req, res, next) => {
