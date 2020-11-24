@@ -253,11 +253,25 @@ router.post('/precio', (req,res,next) =>{
     //const { dinero } = req.params;
     const prueba = req.body;
     console.log(prueba)
-    conn.query('select producto.nombre, producto.activo, producto.precio, especificacion.contenido from producto join especificacion on producto.id_producto = especificacion.id_producto GROUP BY producto.id_producto having producto.precio > ?', [prueba.precio], (err, resp, campos) => {
+    conn.query('select producto.nombre, producto.jpg, producto.activo, producto.precio, especificacion.contenido from producto join especificacion on producto.id_producto = especificacion.id_producto GROUP BY producto.id_producto having producto.precio > ?', [prueba.precio], (err, resp, campos) => {
             res.render('vinoteca.ejs',   { datos: resp });
     });
 });
 
+router.post('/preciosRangos', (req,res,next) =>{
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res) =>{
+    
+    //const { dinero } = req.params;
+    const {RangoMenor,RangoMayor} = datitos =  req.body;
+    console.log(datitos)
+    conn.query('select producto.nombre, producto.jpg, producto.activo, producto.precio, especificacion.contenido from producto join especificacion on producto.id_producto = especificacion.id_producto GROUP by producto.id_producto having producto.precio BETWEEN ? and ?', [datitos.RangoMenor, datitos.RangoMayor], (err, resp, campos) => {
+            res.render('vinoteca.ejs',   { datos: resp });
+    });
+});
 router.get('/eliminar1/:correo', (req,res,next) =>{
     if(req.isAuthenticated()) return next();
     res.redirect('/login');

@@ -170,7 +170,7 @@ conn.query("select usuario.nombre, usuario.rol, usuario.telefono, compra.pago_to
 	console.log(res);
 });
 //4.-
-conn.query("select usuario.nombre, usuario.rol, usuario.telefono, compra.pago_total from usuario join compra on usuario.correo = compra.correo GROUP by compra.pago_total having compra.pago_total BETWEEN 10000 and 25000", (err,res,campos) =>{
+conn.query("select producto.nombre, producto.jpg, producto.activo, producto.precio, especificacion.contenido from producto join especificacion on producto.id_producto = especificacion.id_producto GROUP by producto.id_producto having producto.precio BETWEEN 10000 and 25000", (err,res,campos) =>{
 	if(err) throw err;
 	console.log(res);
 });
