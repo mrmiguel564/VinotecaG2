@@ -97,6 +97,25 @@ router.get('/modificarPersonas/:correo', (req,res,next) => {
     });
 });
 
+router.get('/modificarSucursal/:nombre', (req,res,next) => {
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    const {nombre} =  req.params;
+    conn.query('Select * from sucursal where nombre = ?', [nombre] , (err,resp,campos) => {
+        //console.log(resp);
+        res.render('ModificarSucursal.ejs',   { datos: resp });
+    });
+});
+
 router.get('/admin', (req,res,next) => {
     if(req.isAuthenticated()) return next();
     res.redirect('/login');
@@ -175,6 +194,24 @@ router.get('/admin/compras', (req,res,next) => {
     conn.query('Select * from compra', (err,resp,campos) => {
         //console.log(resp);
         res.render('compras.ejs',   { datos: resp });
+    });
+});
+
+router.get('/admin/sucursales', (req,res,next) => {
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+ 
+    conn.query('Select * from sucursal', (err,resp,campos) => {
+        //console.log(resp);
+        res.render('Sucursal.ejs',   { datos: resp });
     });
 });
 router.get('/login', (req,res) => {
@@ -268,6 +305,30 @@ router.get('/eliminar2/:id_compra', (req,res,next) =>{
     });
 });
 
+router.get('/eliminar3/:nombre', (req,res,next) =>{
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+
+    const { nombre } = req.params;
+    conn.query('DELETE from sucursal WHERE nombre = ?', [nombre], (err, resp, campos) => {
+        if(!err){
+            console.log("sucursal eliminada")
+            res.redirect('/admin/sucursales')
+        }else{
+            console.log(err);
+        }
+    });
+});
+
 //router.post('/ingresar', (req,res) =>{
 //    
 //    conn.query('INSERT into producto VALUES ?', post , (err, resp, campos) => {
@@ -336,6 +397,36 @@ router.post('/ingresa/personas',(req, res, next) => {
     }, (err, result) => {
         if(!err) {
             res.redirect('/admin/personas');
+            console.log("Datos agregados con exito");
+            console.log(result);
+        } else {
+            console.log("datos repetidos o no agregados");
+            console.log(err);
+        }
+    });
+});
+
+router.post('/ingresa/sucursal',(req, res, next) => {
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    //console.log(req.body);
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+   
+    const {nombre, ubicacion} = req.body;
+    conn.query('INSERT into sucursal SET? ',{
+        nombre: nombre,
+        ubicacion: ubicacion
+    }, (err, result) => {
+        if(!err) {
+            res.redirect('/admin/sucursales');
             console.log("Datos agregados con exito");
             console.log(result);
         } else {
@@ -439,6 +530,31 @@ router.post('/modificar4/:correo', (req,res,next) =>{
         if(!err){
             console.log("Persona actualizada")
             res.redirect('/admin/personas')
+        }else{
+            console.log(err);
+        }
+    });
+});
+
+router.post('/modificar5/:nombre', (req,res,next) =>{
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    const {ubicacion}= datitos =  req.body;
+    const {nombre} = req.params;
+    conn.query('UPDATE sucursal SET? WHERE nombre = ?', [datitos, req.params.nombre], (err, resp, campos) => {
+        if(!err){
+            console.log("Sucursal actualizada")
+            res.redirect('/admin/sucursales')
         }else{
             console.log(err);
         }
