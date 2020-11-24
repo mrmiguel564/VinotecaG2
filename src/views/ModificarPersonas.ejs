@@ -46,23 +46,51 @@
     
     <div class="w3-half w3-container">
       <% for(var i = 0; i < datos.length; i++){ %>
-      <form action="/modificar2/<%=datos[i].id_compra%>" method="post" class="card-body">
-      <div class="input-group ">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input id="correo" type="text" class="form-control" value="<%=datos[i].correo%>" name="correo" placeholder="Correo de la persona">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-        <input id="pago_total" type="number" class="form-control" value="<%=datos[i].pago_total%>" name="pago_total" placeholder="Pago total Clp">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-        <input id="nombre_receptor" type="text" class="form-control"value="<%=datos[i].nombre_receptor%>" name="nombre_receptor" placeholder="Nombre de la persona receptora">
-      </div>
-      <input type="submit" class="btn btn-primary" value="Confirmar" ></input>
-    
-      <a type="button" class="btn btn-default" href="/admin/compras" >Anular/Cancelar</a>
-    </form> 
+        <div class="w3-row padding ">
+            <div class="w3-half w3-container">
+              <form action="/modificar4/<%=datos[i].correo%>" method="post" class="card-body">
+              <div class="input-group ">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="correo" type="text" class="form-control" name="correo" value="<%=datos[i].correo%>">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="nombre" type="text" class="w3-half w3- form-control" name="nombre" value="<%=datos[i].nombre%>">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="password" type="text" class="w3-half w3- form-control" name="password" value="<%=datos[i].password%>">
+              </div>
+              <div class="input-group">
+                <label for="fecha_nacimiento">fecha nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="<%=datos[i].fecha_nacimiento%>">
+              </div>
+              <label>Rol del usuario dentro de la pagina:</label><br>
+              <div class="w3-row padding">
+                <div class="w3-third ">
+                  <input id="rol" class="w3-radio" type="radio" name="rol" value="cliente" checked>
+                <label>cliente</label>
+                <br>
+                </div>
+                <div class="w3-third">
+                  <input id="rol" class="w3-radio" type="radio" name="rol" value="administrador" checked>
+                  <label>administrador</label>
+                  <br>
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                <input id="telefono" type="text" class="form-control" name="telefono" value="<%=datos[i].telefono%>">
+              </div>
+              
+              <br>
+              <input type="submit" class="btn btn-primary" value="Confirmar" ></input>
+            
+              <a type="button" class="btn btn-default" href="/admin/personas" >Anular/Cancelar</a>
+            </form> 
+            </div>
+          
+        </div>
     <% } %> 
  
     </div>

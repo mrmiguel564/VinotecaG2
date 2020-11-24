@@ -46,22 +46,18 @@
     
     <div class="w3-half w3-container">
       <% for(var i = 0; i < datos.length; i++){ %>
-      <form action="/modificar2/<%=datos[i].id_compra%>" method="post" class="card-body">
-      <div class="input-group ">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input id="correo" type="text" class="form-control" value="<%=datos[i].correo%>" name="correo" placeholder="Correo de la persona">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-        <input id="pago_total" type="number" class="form-control" value="<%=datos[i].pago_total%>" name="pago_total" placeholder="Pago total Clp">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-        <input id="nombre_receptor" type="text" class="form-control"value="<%=datos[i].nombre_receptor%>" name="nombre_receptor" placeholder="Nombre de la persona receptora">
-      </div>
+      <form action="/modificar5/<%=datos[i].nombre%>" method="post" class="card-body">
+        <div class="input-group ">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="nombre" type="text" class="form-control" name="nombre" value="<%=datos[i].nombre%>">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input id="ubicacion" type="text" class="w3-half w3- form-control" name="ubicacion" value="<%=datos[i].ubicacion%>">
+          </div>
       <input type="submit" class="btn btn-primary" value="Confirmar" ></input>
     
-      <a type="button" class="btn btn-default" href="/admin/compras" >Anular/Cancelar</a>
+      <a type="button" class="btn btn-default" href="/admin/sucursales" >Anular/Cancelar</a>
     </form> 
     <% } %> 
  

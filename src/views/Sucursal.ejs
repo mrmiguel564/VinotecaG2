@@ -39,39 +39,66 @@
 </header>
 
 <div class="w3-container w3-padding w3-section w3-light-grey w3-center">
-  <h1 class="w3-xlarge">Modificar compra</h1>
+  <h1 class="w3-xlarge">Agregar Sucursal</h1>
 </div>
-<p> Modifique la persona segun los datos que usted necesite cambiar</p>
+
+
   <div class="w3-row padding ">
-    
     <div class="w3-half w3-container">
-      <% for(var i = 0; i < datos.length; i++){ %>
-      <form action="/modificar2/<%=datos[i].id_compra%>" method="post" class="card-body">
+      <form action="/ingresa/sucursal" method="post" class="card-body">
       <div class="input-group ">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input id="correo" type="text" class="form-control" value="<%=datos[i].correo%>" name="correo" placeholder="Correo de la persona">
+        <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Nombre de la sucursal">
       </div>
       <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-        <input id="pago_total" type="number" class="form-control" value="<%=datos[i].pago_total%>" name="pago_total" placeholder="Pago total Clp">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input id="ubicacion" type="text" class="w3-half w3- form-control" name="ubicacion" placeholder="Ubicacion de la sucursal">
       </div>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-        <input id="nombre_receptor" type="text" class="form-control"value="<%=datos[i].nombre_receptor%>" name="nombre_receptor" placeholder="Nombre de la persona receptora">
-      </div>
+      
+      <br>
       <input type="submit" class="btn btn-primary" value="Confirmar" ></input>
     
-      <a type="button" class="btn btn-default" href="/admin/compras" >Anular/Cancelar</a>
+      <a type="button" class="btn btn-default" href="/admin/sucursales" >Anular/Cancelar</a>
     </form> 
-    <% } %> 
- 
     </div>
   
 </div>
+  
+  <div class="w3-container w3-padding w3-section w3-light-grey w3-center">
+    <h1 class="w3-xlarge">Eliminar/Modificar Sucursal</h1>
+  </div>
+  <div class='col-md-6 mt-4 text-center'>
+    <table class='table table-striped'>
+        <tr>
+            <th>Nombre</th>
+            <th>Ubicacion</th>
+            <th>Eliminar </th>
+            <th>Modificar</th>
+        </tr>
+        <% for(var i = 0; i < datos.length; i++){ %>
+           <tr>
+               <td><%= datos[i].nombre %> </td>
+               <td><%= datos[i].ubicacion %></td>
+               <td>
+                <form action="/eliminar3/<%=datos[i].nombre%>"  method="get" class="card-body">
+                  <input type="submit" class="btn btn-danger" value="Eliminar" ></input>
+              </form> 
+              </td>
+              <td>
+                <form action="/modificarSucursal/<%=datos[i].nombre%>"  method="get" class="card-body">
+                  <input type="submit" class="btn btn-primary" value="Modificar" ></input>
+              </form> 
+              </td>
+           </tr> 
+        <% } %>
+    </table>
+</div>
 
- 
 
- 
+  </div>
+
+
+<br> 
 
 
 <script>

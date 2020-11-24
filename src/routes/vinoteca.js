@@ -3,11 +3,9 @@ const passport = require('passport');
 const router = express.Router();
 
 const conn = require('../database'); // Buscando el archivo de conf de la base de datos
-
 router.get('/', (req,res,next) => {
     if(req.isAuthenticated()) return next();
     res.redirect('/login');
-
     //res.render('index.ejs');
     },(req,res) =>{
     conn.query('Select * from producto', (err,resp,campos) => {
@@ -16,9 +14,10 @@ router.get('/', (req,res,next) => {
     });
 
 });
-//hola2 
+
 router.get('/login', (req,res) =>{
     res.render('login.ejs');
+    
 });
 
 router.post('/login',passport.authenticate('local',{  
@@ -46,24 +45,102 @@ router.get('/modificarCompras/:id_compra', (req,res,next) => {
     res.redirect('/login');
 
     //res.render('index.ejs');
-    },(req,res) =>{
-
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
     const { id_compra } =  req.params;
     conn.query('Select * from compra where id_compra = ?', [id_compra] , (err,resp,campos) => {
         //console.log(resp);
         res.render('ModificarCompras.ejs',   { datos: resp });
     });
 });
-router.get('/admin', (req,res,next) => {
+
+router.get('/modificarProductos/:id_producto', (req,res,next) => {
     if(req.isAuthenticated()) return next();
     res.redirect('/login');
 
     //res.render('index.ejs');
-    },(req,res) =>{
-    conn.query('SELECT usuario.correo, Count(producto_carrito.id_producto) AS NumeroPedidos FROM producto_carrito LEFT JOIN usuario ON producto_carrito.correo=usuario.correo GROUP BY usuario.nombre', (err,resp,campos) => {
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    const {id_producto} =  req.params;
+    conn.query('Select * from producto where id_producto = ?', [id_producto] , (err,resp,campos) => {
         //console.log(resp);
-        res.render('admin.ejs',   { datos: resp });
+        res.render('ModificarProductos.ejs',   { datos: resp });
     });
+});
+
+router.get('/modificarPersonas/:correo', (req,res,next) => {
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    const {correo} =  req.params;
+    conn.query('Select * from usuario where correo = ?', [correo] , (err,resp,campos) => {
+        //console.log(resp);
+        res.render('ModificarPersonas.ejs',   { datos: resp });
+    });
+});
+
+router.get('/modificarSucursal/:nombre', (req,res,next) => {
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    const {nombre} =  req.params;
+    conn.query('Select * from sucursal where nombre = ?', [nombre] , (err,resp,campos) => {
+        //console.log(resp);
+        res.render('ModificarSucursal.ejs',   { datos: resp });
+    });
+});
+
+router.get('/admin', (req,res,next) => {
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+    
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    conn.query('SELECT usuario.correo, Count(producto_carrito.id_producto) AS NumeroPedidos FROM producto_carrito LEFT JOIN usuario ON producto_carrito.correo=usuario.correo GROUP BY usuario.nombre', (err,resp,campos) => {
+        conn.query('SELECT MIN(producto.precio) as MenorPrecio from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp1,campos) => {
+            conn.query('SELECT MAX(producto.precio) as MayorPrecio from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp2,campos) => {
+                conn.query('SELECT AVG(producto.precio) as ElPromedioDeLosPrecios from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp3,campos) => {
+                    //console.log(resp);
+                     res.render('admin.ejs',   { datos: resp, datos1: resp1, datos2: resp2, datos3: resp3 });
+                });
+            });
+
+        });
+    });
+    
+    
 });
 
 router.get('/admin/productos', (req,res,next) => {
@@ -71,7 +148,13 @@ router.get('/admin/productos', (req,res,next) => {
     res.redirect('/login');
 
     //res.render('index.ejs');
-    },(req,res) =>{
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
     conn.query('Select * from producto', (err,resp,campos) => {
         //console.log(resp);
         res.render('productos.ejs',   { datos: resp });
@@ -83,7 +166,13 @@ router.get('/admin/personas', (req,res,next) => {
     res.redirect('/login');
 
     //res.render('index.ejs');
-    },(req,res) =>{
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+  
     conn.query('Select * from usuario', (err,resp,campos) => {
         //console.log(resp);
         res.render('personas.ejs',   { datos: resp });
@@ -95,10 +184,34 @@ router.get('/admin/compras', (req,res,next) => {
     res.redirect('/login');
 
     //res.render('index.ejs');
-    },(req,res) =>{
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+ 
     conn.query('Select * from compra', (err,resp,campos) => {
         //console.log(resp);
         res.render('compras.ejs',   { datos: resp });
+    });
+});
+
+router.get('/admin/sucursales', (req,res,next) => {
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+ 
+    conn.query('Select * from sucursal', (err,resp,campos) => {
+        //console.log(resp);
+        res.render('Sucursal.ejs',   { datos: resp });
     });
 });
 router.get('/login', (req,res) => {
@@ -111,8 +224,13 @@ router.get('/eliminar/:id_producto', (req,res,next) =>{
     res.redirect('/login');
 
     //res.render('index.ejs');
-    },(req,res) =>{
-    
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+  
     const { id_producto } = req.params;
     conn.query('DELETE from producto WHERE id_producto = ?', [id_producto], (err, resp, campos) => {
         if(!err){
@@ -135,17 +253,37 @@ router.post('/precio', (req,res,next) =>{
     //const { dinero } = req.params;
     const prueba = req.body;
     console.log(prueba)
-    conn.query('select producto.nombre, producto.activo, producto.precio, especificacion.contenido from producto join especificacion on producto.id_producto = especificacion.id_producto GROUP BY producto.id_producto having producto.precio > ?', [prueba.precio], (err, resp, campos) => {
+    conn.query('select producto.nombre, producto.jpg, producto.activo, producto.precio, especificacion.contenido from producto join especificacion on producto.id_producto = especificacion.id_producto GROUP BY producto.id_producto having producto.precio > ?', [prueba.precio], (err, resp, campos) => {
             res.render('vinoteca.ejs',   { datos: resp });
     });
 });
 
-router.get('/eliminar1/:correo', (req,res,next) =>{
+router.post('/preciosRangos', (req,res,next) =>{
     if(req.isAuthenticated()) return next();
     res.redirect('/login');
 
     //res.render('index.ejs');
     },(req,res) =>{
+    
+    //const { dinero } = req.params;
+    const {RangoMenor,RangoMayor} = datitos =  req.body;
+    console.log(datitos)
+    conn.query('select producto.nombre, producto.jpg, producto.activo, producto.precio, especificacion.contenido from producto join especificacion on producto.id_producto = especificacion.id_producto GROUP by producto.id_producto having producto.precio BETWEEN ? and ?', [datitos.RangoMenor, datitos.RangoMayor], (err, resp, campos) => {
+            res.render('vinoteca.ejs',   { datos: resp });
+    });
+});
+router.get('/eliminar1/:correo', (req,res,next) =>{
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+  
     const { correo } = req.params;
     conn.query('DELETE from usuario WHERE correo = ?', [correo], (err, resp, campos) => {
         if(!err){
@@ -163,13 +301,42 @@ router.get('/eliminar2/:id_compra', (req,res,next) =>{
     res.redirect('/login');
 
     //res.render('index.ejs');
-    },(req,res) =>{
-    
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+
     const { id_compra } = req.params;
     conn.query('DELETE from compra WHERE id_compra = ?', [id_compra], (err, resp, campos) => {
         if(!err){
             console.log("persona eliminada")
             res.redirect('/admin/compras')
+        }else{
+            console.log(err);
+        }
+    });
+});
+
+router.get('/eliminar3/:nombre', (req,res,next) =>{
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+
+    const { nombre } = req.params;
+    conn.query('DELETE from sucursal WHERE nombre = ?', [nombre], (err, resp, campos) => {
+        if(!err){
+            console.log("sucursal eliminada")
+            res.redirect('/admin/sucursales')
         }else{
             console.log(err);
         }
@@ -193,14 +360,21 @@ router.post('/ingresa/productos',(req, res,next) => {
     res.redirect('/login');
 
     //res.render('index.ejs');
-    },(req,res) =>{
+    },(req,res,err) =>{
     //console.log(req.body);
-    const {nombre, precio, activo, descripcion,} = req.body;
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+  
+    const {nombre, precio, activo, descripcion, jpg} = req.body;
     conn.query('INSERT into producto SET? ',{
         nombre: nombre,
         precio: precio,
         activo: activo,
         descripcion : descripcion,
+        jpg: jpg
     }, (err, result) => {
         if(!err) {
             res.redirect('/admin/productos');
@@ -218,8 +392,14 @@ router.post('/ingresa/personas',(req, res, next) => {
     res.redirect('/login');
 
     //res.render('index.ejs');
-    },(req,res) =>{
+    },(req,res,err) =>{
     //console.log(req.body);
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+   
     const {correo, nombre, password, fecha_nacimiento, rol, telefono} = req.body;
     conn.query('INSERT into usuario SET? ',{
         correo: correo,
@@ -231,6 +411,36 @@ router.post('/ingresa/personas',(req, res, next) => {
     }, (err, result) => {
         if(!err) {
             res.redirect('/admin/personas');
+            console.log("Datos agregados con exito");
+            console.log(result);
+        } else {
+            console.log("datos repetidos o no agregados");
+            console.log(err);
+        }
+    });
+});
+
+router.post('/ingresa/sucursal',(req, res, next) => {
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    //console.log(req.body);
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+   
+    const {nombre, ubicacion} = req.body;
+    conn.query('INSERT into sucursal SET? ',{
+        nombre: nombre,
+        ubicacion: ubicacion
+    }, (err, result) => {
+        if(!err) {
+            res.redirect('/admin/sucursales');
             console.log("Datos agregados con exito");
             console.log(result);
         } else {
@@ -271,7 +481,12 @@ router.post('/modificar2/:id_compra', (req,res,next) =>{
     res.redirect('/login');
 
     //res.render('index.ejs');
-    },(req,res) =>{
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
     
     const {correo, pago_total, nombre_receptor}= datitos =  req.body;
     const {id_compra} = req.params;
@@ -285,5 +500,79 @@ router.post('/modificar2/:id_compra', (req,res,next) =>{
     });
 });
 
+router.post('/modificar3/:id_producto', (req,res,next) =>{
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    const {nombre, precio, activo, descripcion, jpg}= datitos =  req.body;
+    const {id_producto} = req.params;
+    conn.query('UPDATE producto SET? WHERE id_producto = ?', [datitos, req.params.id_producto], (err, resp, campos) => {
+        if(!err){
+            console.log("Producto actualizado")
+            res.redirect('/admin/productos')
+        }else{
+            console.log(err);
+        }
+    });
+});
+
+router.post('/modificar4/:correo', (req,res,next) =>{
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    const {nombre, password, fecha_nacimiento, rol, telefono}= datitos =  req.body;
+    const {correo} = req.params;
+    conn.query('UPDATE usuario SET? WHERE correo = ?', [datitos, req.params.correo], (err, resp, campos) => {
+        if(!err){
+            console.log("Persona actualizada")
+            res.redirect('/admin/personas')
+        }else{
+            console.log(err);
+        }
+    });
+});
+
+router.post('/modificar5/:nombre', (req,res,next) =>{
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+    let op = require("../index.js")
+    let tipo_usuario = op.rol1;
+    if(tipo_usuario==="cliente"){
+        res.redirect('/')
+    }
+    
+    const {ubicacion}= datitos =  req.body;
+    const {nombre} = req.params;
+    conn.query('UPDATE sucursal SET? WHERE nombre = ?', [datitos, req.params.nombre], (err, resp, campos) => {
+        if(!err){
+            console.log("Sucursal actualizada")
+            res.redirect('/admin/sucursales')
+        }else{
+            console.log(err);
+        }
+    });
+});
 
 module.exports = router;

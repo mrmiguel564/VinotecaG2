@@ -105,7 +105,7 @@
           <div class="w3-col l3 s6">
             <div class="w3-container">
               <div class="w3-display-container">
-                <img src="https://static3.bigstockphoto.com/0/3/1/large2/130724678.jpg" style="width:100%">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi-pPKhNvsqRznLGUlxPoGSdXaP0G1Kp8D7A&usqp=CAU" style="width:100%">
                 <span class="w3-tag w3-display-topleft">New</span>
                 <div class="w3-display-middle w3-display-hover">
                   <button class="w3-button w3-black" onclick="document.getElementById('Form_compra').style.display='block'" >Comprar ahora <i class="fa fa-shopping-cart" ></i></button>
@@ -125,7 +125,19 @@
     <input id="precio" type="number" class="form-control" name="precio" placeholder="Precio">
     <input type="submit" class="btn btn-primary" value="Confirmar"></input>
   </div>
-  
+</form>
+  <p>Escriba dos precios para mostrar los vinos que esten entre ese rango, si no se muestra es porque no hay disponibles dentro de lo que usted puso</p>
+  <form action = "/preciosRangos"  method="post" class="card-body">
+    <div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="RangoMenor" type="number" class="form-control" name="RangoMenor" placeholder="Rango menor">
+    </div>
+    <div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="RangoMayor" type="number" class="form-control" name="RangoMayor" placeholder="Rango mayor">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Confirmar"></input>
+  </form>
     <div class="w3-black w3-center w3-padding-24">Powered by <a href="https://www.w3schools.com/w3css/default.asp"
         title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
     <!-- End page content -->

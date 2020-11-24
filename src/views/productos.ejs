@@ -22,6 +22,7 @@
   <a class="w3-bar-item w3-button" href="/admin/productos">productos</a>
   <a class="w3-bar-item w3-button" href="/admin/personas">personas</a>
   <a class="w3-bar-item w3-button" href="/admin/compras">compras</a>
+  <a class="w3-bar-item w3-button" href="/admin/sucursales">Sucursal</a>
 </div>
 </div>
 
@@ -70,7 +71,10 @@
         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
         <input id="descripcion" type="text" class="form-control" name="descripcion" placeholder="Descripcion">
       </div>
-      <div class="input-group"></div>
+      <label>Ponga aqui la imagen del producto para visualizarlo en la pagina principal</label>
+      <div class="input-group">
+        <input type="file" id="jpg" name="jpg">
+      </div>
       <br>
       <input type="submit" class="btn btn-primary" value="Confirmar" ></input>
     
@@ -81,7 +85,7 @@
 </div>
   
   <div class="w3-container w3-padding w3-section w3-light-grey w3-center">
-    <h1 class="w3-xlarge">Eliminar producto</h1>
+    <h1 class="w3-xlarge">Eliminar/Modificar producto</h1>
   </div>
   <div class='col-md-6 mt-4 text-center'>
     <table class='table table-striped'>
@@ -91,7 +95,8 @@
             <th>precio</th>
             <th>activo</th>
             <th>descripcion</th>
-            <th> </th>
+            <th>Eliminar </th>
+            <th>Modificar</th>
         </tr>
         <% for(var i = 0; i < datos.length; i++){ %>
            <tr>
@@ -104,6 +109,11 @@
                 <form action="/eliminar/<%=datos[i].id_producto%>"  method="get" class="card-body">
                   <input type="submit" class="btn btn-danger" value="Eliminar" ></input>
               </form> 
+              </td>
+              <td>
+                <form action="/modificarProductos/<%=datos[i].id_producto%>"  method="get" class="card-body">
+                <input type="submit" class="btn btn-primary" value="Modificar" ></input>
+                </form>
               </td>
            </tr> 
         <% } %>
