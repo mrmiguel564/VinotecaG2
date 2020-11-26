@@ -26,6 +26,83 @@ router.get('/registro', (req,res) =>{
     
 });
 
+router.get('/direccionEnvio/:id_compra', (req,res,next) => {
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+    //res.render('index.ejs');
+    },(req,res) =>{
+    const{id_compra} = req.params
+    conn.query('Select * from compra where id_compra = ?',[id_compra] ,(err,resp,campos) => {
+        //console.log(resp);
+        res.render('DireccionEnvio.ejs',   { datos: resp });
+    });
+
+});
+
+router.get('/ingresarDireccion/:id_compra', (req,res,next) => {
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+    //res.render('index.ejs');
+    },(req,res) =>{
+
+    const{id_compra} = req.params
+    conn.query('Select * from compra where id_compra = ?',[id_compra] ,(err,resp,campos) => {
+        //console.log(resp);
+        res.render('DireccionEnvio.ejs',   { datos: resp });
+    });
+
+});
+
+router.post('/ingresa/Direccion/:id_compra',(req, res,next) => {
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res) =>{
+    //console.log(req.body);
+    const {numero_casa, provincia, comuna, numero_block, calle, comentarios} = req.body;
+    const { id_compra} = req.params;
+    conn.query('INSERT into direccion_envio SET? ',{
+        id_compra: id_compra,
+        numero_casa: numero_casa,
+        provincia: provincia,
+        comuna: comuna,
+        numero_block: numero_block,
+        calle: calle,
+        comentarios: comentarios
+    }, (err, result) => {
+        if(!err) {
+            
+            res.redirect('/');
+            console.log("Datos agregados con exito");
+            console.log(result);
+        } else {
+            console.log("datos repetidos o no agregados");
+            console.log(err);
+        }
+    });
+});
+
+router.get('/eliminarCompra/:id_compra', (req,res,next) =>{
+
+    if(req.isAuthenticated()) return next();
+    res.redirect('/login');
+
+    //res.render('index.ejs');
+    },(req,res,err) =>{
+   
+
+    const { id_compra } = req.params;
+    conn.query('DELETE from compra WHERE id_compra = ?', [id_compra], (err, resp, campos) => {
+        if(!err){
+            console.log("persona eliminada")
+            res.redirect('/')
+        }else{
+            console.log(err);
+        }
+    });
+});
 router.post('/registrarUsuario',(req,res) =>{
     //console.log(req.body);
     
@@ -501,7 +578,8 @@ router.post('/ingresa/compras',(req, res,next) => {
         nombre_receptor: nombre_receptor
     }, (err, result) => {
         if(!err) {
-            res.redirect('/');
+            
+            res.redirect('/direccionEnvio/'+result.insertId);
             console.log("Datos agregados con exito");
             console.log(result);
         } else {
