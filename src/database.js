@@ -14,7 +14,7 @@ conn.connect(function (err){
         console.log('La base de dato esta conectada')
     }
 });
-/*
+
 //Consultas etapa 1
 //1.-
 conn.query("select * from usuario where nombre = 'Mauricio de juan'", (err,res,campos) =>{
@@ -230,7 +230,11 @@ conn.query("select  usuario.nombre, producto_carrito.correo, producto_carrito.ca
 	if(err) throw err;
 	console.log(res);
 });
+
+
 //16.-
+
+
 conn.query("show grants for 'sonic'@'localhost'", (err,res,campos) =>{
 	if(err) throw err;
 	console.log(res);
@@ -245,6 +249,7 @@ conn.query("drop role 'r1'", (err,res,campos) =>{
 	if(err) throw err;
 	console.log(res);
 });
-*/
+
+
 
 module.exports = conn;

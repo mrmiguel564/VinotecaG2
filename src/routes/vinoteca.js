@@ -521,7 +521,7 @@ router.post('/modificar3/:id_producto', (req,res,next) =>{
         res.redirect('/')
     }
     
-    const {nombre, precio, activo, descripcion, jpg}= datitos =  req.body;
+    const {nombre, precio, activo, descripcion, jpg }= datitos =  req.body;
     const {id_producto} = req.params;
     conn.query('UPDATE producto SET? WHERE id_producto = ?', [datitos, req.params.id_producto], (err, resp, campos) => {
         if(!err){
