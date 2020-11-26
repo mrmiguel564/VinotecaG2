@@ -21,6 +21,34 @@ router.get('/login', (req,res) =>{
     
 });
 
+router.get('/registro', (req,res) =>{
+    res.render('RegistrarUsuario.ejs');
+    
+});
+
+router.post('/registrarUsuario',(req,res) =>{
+    //console.log(req.body);
+    
+   
+    const {correo, nombre, password, fecha_nacimiento, telefono} = req.body;
+    conn.query('INSERT into usuario SET? ',{
+        correo: correo,
+        nombre: nombre,
+        password: password,
+        fecha_nacimiento: fecha_nacimiento,
+        telefono, telefono
+    }, (err, result) => {
+        if(!err) {
+            res.redirect('/login');
+            console.log("Datos agregados con exito");
+            console.log(result);
+        } else {
+            console.log("datos repetidos o no agregados");
+            console.log(err);
+        }
+    });
+});
+
 router.post('/login',passport.authenticate('local',{  
     successRedirect: "/listo",
     failureRedirect: "/login"
@@ -473,7 +501,7 @@ router.post('/ingresa/compras',(req, res,next) => {
         nombre_receptor: nombre_receptor
     }, (err, result) => {
         if(!err) {
-            res.redirect('/admin/compras');
+            res.redirect('/');
             console.log("Datos agregados con exito");
             console.log(result);
         } else {

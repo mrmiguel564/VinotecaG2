@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<title>Pagina Administrador</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+
+
+
+
+
+ 
+
+<div class="w3-top w3-theme w3-large w3-hide-large">
+  <i class="fa fa-bars w3-button w3-teal w3-xlarge" onclick="w3_open()"></i>
+</div>
+<header class="w3-container w3-theme w3-padding-32 w3-center">
+  <h1 class="w3-xxxlarge w3-padding-16">Registro del usuario en la vinoteca </h1>
+</header>
+
+<div class="w3-container w3-padding w3-section w3-light-grey w3-center">
+  <h1 class="w3-xlarge">Registro del usuario</h1>
+</div>
+<p> Por favor ingrese sus datos para poder registrarse</p>
+ 
+<div class="w3-row padding ">
+  <div class="w3-half w3-container">
+    <form action="/registrarUsuario" method="post" class="card-body">
+    <div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="correo" type="text" class="form-control" name="correo" placeholder="Correo de la persona">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+      <input id="nombre" type="text" class="w3-half w3- form-control" name="nombre" placeholder="Nombre de la persona">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+      <input id="password" type="text" class="w3-half w3- form-control" name="password" placeholder="contraseña de la persona">
+    </div>
+    <div class="input-group">
+      <label for="fecha_nacimiento">fecha nacimiento:</label>
+      <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+    </div>
+   
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+      <input id="telefono" type="text" class="form-control" name="telefono" placeholder="Telefono">
+    </div>
+    <div class="input-group"></div>
+    <br>
+    <input type="submit" class="btn btn-primary" value="Confirmar" ></input>
+  
+    <a type="button" class="btn btn-default" href="/login" >Anular/Cancelar</a>
+  </form> 
+  </div>
+    
+       
+
+ 
+
+ 
+
+
+<script>
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+openNav("nav01");
+function openNav(id) {
+  document.getElementById("nav01").style.display = "none";
+  document.getElementById("nav02").style.display = "none";
+  document.getElementById("nav03").style.display = "none";
+  document.getElementById(id).style.display = "block";
+}
+
+</script>
+
+<script src="https://www.w3schools.com/lib/w3codecolor.js"></script>
+
+<script>
+w3CodeColor();
+</script>
+
+</body>
+</html> 

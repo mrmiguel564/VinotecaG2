@@ -150,55 +150,31 @@
       <div class="w3-container w3-white w3-center">
         <i onclick="document.getElementById('Form_compra').style.display='none'"
           class="fa fa-remove w3-right w3-button w3-transparent w3-xlarge"></i>
-
+        <form action="/ingresa/compras"  method="post" class="card-body">
         <h1 class="w3-wide">Despacho a Domicilio</h1>
-        <p>Porfavor ingrese sus datos de envio.</p>
-
-        <div class="input-group mb-3 input-group-sm" >
-          <div class="input-group-prepend ">
-            <span class="input-group-text">Persona que retira</span>
-          </div>
-
-          <input type="text" class="form-control w3-input w3-border " placeholder="Nombre">
-          <input type="text" class="form-control w3-input w3-border" placeholder="Apellido">
-          <input type="text" class="form-control w3-input w3-border" placeholder="Rut">
-
-        </div>
-
+        <p>Porfavor ingrese sus datos de la compra.</p>
         <div class="input-group mb-3 input-group-sm">
           <div class="input-group-prepend">
             <span class="input-group-text">Email</span>
           </div>
-          <input type="text" class="form-control " placeholder="Ejemplo@Ejemplo.com">
+          <input id="correo" type="text" class="w3-half w3- form-control" name="correo" placeholder="Correo de la persona">
         </div>
-
-
         <div class="input-group mb-3 input-group-sm">
           <div class="input-group-prepend">
-            <span class="input-group-text">Dirección</span>
+            <span class="input-group-text">Pago total</span>
           </div>
-
-          <input type="text" class="form-control w3-input w3-border" placeholder="Nombre">
-          <input type="text" class="form-control w3-input w3-border" placeholder="Numero">
-
+          <input id="pago_total" type="number" class="w3-half w3- form-control" name="pago_total" placeholder="0">
         </div>
-
         <div class="input-group mb-3 input-group-sm">
           <div class="input-group-prepend">
-            <span class="input-group-text">Provincia</span>
+            <span class="input-group-text">Nombre_Receptor</span>
           </div>
-          <input type="text" class="form-control " placeholder="Ejemplo: Valparaiso">
+          <input id="nombre_receptor" type="text" class="w3-half w3- form-control" name="nombre_receptor" placeholder="Nombre de la persona receptora">   
         </div>
-
-        <div class="input-group mb-3 input-group-sm">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Comuna</span>
-          </div>
-          <input type="text" class="form-control " placeholder="Ejemplo: Quilpue">
-        </div>
-        <button type="button" class="btn btn-outline-secondary" >Anular/Cancelar</button>
-        <button type="button" class="btn btn-success"
-          onclick="document.getElementById('Form_compra').style.display='none'">Ir a Metodos de pago</button>
+        <input type="submit" class="btn btn-primary">
+        <a type="button" class="btn btn-outline-secondary" href="/">Anular/Cancelar</a>
+        </form>
+        
       </div>
     </div>
   </div>
