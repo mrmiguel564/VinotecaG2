@@ -463,9 +463,8 @@ router.get('/eliminar3/:nombre', (req,res,next) =>{
 //});
 
 router.post('/ingresa/productos', (req, res,next) => {
-    
-    
-    console.log(req.files[0].filename);
+        
+    //console.log(req.files[0].filename);
 
     if(req.isAuthenticated()) return next();
     res.redirect('/login');
