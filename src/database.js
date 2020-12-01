@@ -234,11 +234,17 @@ conn.query("select  usuario.nombre, producto_carrito.correo, producto_carrito.ca
 
 //16.-
 
+conn.query("create USER 'sonic'@'localhost'", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+}); 
 
 conn.query("show grants for 'sonic'@'localhost'", (err,res,campos) =>{
 	if(err) throw err;
 	console.log(res);
 });
+
+
 //17.-
 conn.query("Create role 'r1'", (err,res,campos) =>{
 	if(err) throw err;
@@ -250,6 +256,9 @@ conn.query("drop role 'r1'", (err,res,campos) =>{
 	console.log(res);
 });
 
-
+conn.query("drop user 'sonic'@'localhost'", (err,res,campos) =>{
+	if(err) throw err;
+	console.log(res);
+});
 
 module.exports = conn;
