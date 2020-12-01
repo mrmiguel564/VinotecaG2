@@ -238,11 +238,13 @@ router.get('/admin', (req,res,next) => {
         conn.query('SELECT MIN(producto.precio) as MenorPrecio from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp1,campos) => {
             conn.query('SELECT MAX(producto.precio) as MayorPrecio from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp2,campos) => {
                 conn.query('SELECT AVG(producto.precio) as ElPromedioDeLosPrecios from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp3,campos) => {
-                    //console.log(resp);
-                     res.render('admin.ejs',   { datos: resp, datos1: resp1, datos2: resp2, datos3: resp3 });
+                    conn.query('select id_producto, max(cantidad_producto) as ProductoMaximo from producto_carrito', (err,resp4,campos) => { 
+                        conn.query('select id_producto, min(cantidad_producto) as ProductoMinimo from producto_carrito', (err,resp5,campos) => {     
+                     res.render('admin.ejs',   { datos: resp, datos1: resp1, datos2: resp2, datos3: resp3, datos4: resp4, datos5:resp5});
                 });
             });
-
+        });
+         });
         });
     });
     
