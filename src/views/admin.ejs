@@ -61,6 +61,7 @@
             </tr>
         <% } %>
     </table>
+  </div>
     <div class='col-md-6 mt-4 text-center'>
       <table class='table table-striped'>
           <tr>
@@ -84,7 +85,27 @@
           </tr>
       <% } %>
       </table>
-      
+      <div class='col-md-6 mt-4 text-center'>
+        <table class='table table-striped'>
+            <tr>
+                <th>Producto mas vendido</th>
+                <th>id del producto</th>
+                <th>Producto menos vendido</th>
+                <th>id del producto</th>
+            </tr>
+            <% for(var i = 0; i < datos4.length; i++){ %>
+                <tr>
+                 <td><%=datos4[i].ProductoMaximo%></td>
+                 <td><%=datos4[i].id_producto%></td>
+                
+            <% } %>
+            <% for(var i = 0; i < datos5.length; i++){ %>
+              
+              <td><%=datos5[i].ProductoMinimo%></td>
+              <td><%=datos5[i].id_producto%></td>
+              
+          <% } %>
+        </table>
 
 
 <br> 
