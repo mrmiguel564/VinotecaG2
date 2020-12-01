@@ -34,27 +34,43 @@
   <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
     <div class="w3-container w3-display-container w3-padding-16">
       <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-      <h3 class="w3-wide"><b>Vinoteca</b></h3>
+      <h3 class="w3-wide"> <img src="logo.png"  style="width:100%"></h3>
     </div>
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-      <a href="#" class="w3-bar-item w3-button">Cerveza</a>
-      <a href="#" class="w3-bar-item w3-button">whisky</a>
-      <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-        Vinos <i class="fa fa-caret-down"></i>
-      </a>
-      <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-        <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Vinos
-          oscuros</a>
-        <a href="#" class="w3-bar-item w3-button">Vinos blancos</a>
-        <a href="#" class="w3-bar-item w3-button">Vinos espumantes</a>
-        <a href="#" class="w3-bar-item w3-button">vinos rosados</a>
-      </div>
+     
+      <p>Escriba un precio para mostrar los vinos que sean superior a los montos puestos, siempre y cuando esten en stock y tengan especificacion</p>
+<p>Si no se muestran vinos es porque no hay disponibles dentro de lo que usted puso</p>
+<form action = "/precio"  method="post" class="card-body">
+  <div class="input-group ">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input id="precio" type="number" class="form-control" name="precio" placeholder="Precio">
+    <input type="submit" class="btn btn-primary" value="Confirmar"></input>
+  </div>
+</form>
+  <p>Escriba dos precios para mostrar los vinos que esten entre ese rango, si no se muestra es porque no hay disponibles dentro de lo que usted puso</p>
+  <form action = "/preciosRangos"  method="post" class="card-body">
+    <div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="RangoMenor" type="number" class="form-control" name="RangoMenor" placeholder="Rango menor">
+    </div>
+    <div class="input-group ">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="RangoMayor" type="number" class="form-control" name="RangoMayor" placeholder="Rango mayor">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Confirmar"></input>
+  </form>
+
 
     </div>
-    <a href="#footer" class="w3-bar-item w3-button w3-padding">Cerveza</a>
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" >Seleccion del dia</a>
-    <a href="#footer" class="w3-bar-item w3-button w3-padding">Agua Ardiente</a>
+
+    </div>
+   
   </nav>
+
+
+
+
+
 
   <!-- Top menu on small screens -->
   <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
@@ -117,29 +133,8 @@
         <% } %>
       <% } %> 
     </div>
-<p>Escriba un precio para mostrar los vinos que sean superior a los montos puestos, siempre y cuando esten en stock y tengan especificacion</p>
-<p>Si no se muestran vinos es porque no hay disponibles dentro de lo que usted puso</p>
-<form action = "/precio"  method="post" class="card-body">
-  <div class="input-group ">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-    <input id="precio" type="number" class="form-control" name="precio" placeholder="Precio">
-    <input type="submit" class="btn btn-primary" value="Confirmar"></input>
-  </div>
-</form>
-  <p>Escriba dos precios para mostrar los vinos que esten entre ese rango, si no se muestra es porque no hay disponibles dentro de lo que usted puso</p>
-  <form action = "/preciosRangos"  method="post" class="card-body">
-    <div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="RangoMenor" type="number" class="form-control" name="RangoMenor" placeholder="Rango menor">
-    </div>
-    <div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="RangoMayor" type="number" class="form-control" name="RangoMayor" placeholder="Rango mayor">
-    </div>
-    <input type="submit" class="btn btn-primary" value="Confirmar"></input>
-  </form>
-    <div class="w3-black w3-center w3-padding-24">Powered by <a href="https://www.w3schools.com/w3css/default.asp"
-        title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
+
+    <div class="w3-black w3-center w3-padding-24">Powered by Grupo 2</div>
     <!-- End page content -->
   </div>
 

@@ -359,7 +359,7 @@ router.post('/precio', (req,res,next) =>{
     //const { dinero } = req.params;
     const prueba = req.body;
     console.log(prueba)
-    conn.query('select producto.nombre, producto.jpg, producto.activo, producto.precio, especificacion.contenido from producto join especificacion on producto.id_producto = especificacion.id_producto GROUP BY producto.id_producto having producto.precio > ?', [prueba.precio], (err, resp, campos) => {
+    conn.query('select producto.nombre, producto.jpg, producto.activo, producto.precio, from producto join stock on producto.id_producto = especificacion.id_producto GROUP BY producto.id_producto having producto.precio > ?', [prueba.precio], (err, resp, campos) => {
             res.render('vinoteca.ejs',   { datos: resp });
     });
 });
