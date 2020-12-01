@@ -39,18 +39,15 @@
 </header>
 
 <div class="w3-container w3-padding w3-section w3-light-grey w3-center">
-  <h1 class="w3-xlarge">Bienvenido a vinoteca Admin</h1>
+  <h1 class="w3-xlarge">Estadisticas</h1>
 </div>
-<h2 class="w3-section">Instrucciones: </h2>
-  <p>1.- En la parte superior izquierda se podra encontrar con los productos, personas y compras, para añadir actualizar y modificar</p>
-  <p>2.- En el caso de compras usted no añade compras pero si puede modificarse si lo amerita </p>
-  <p>3.- dentro de esta pagina usted puede ver tambien los pedidos de las personas que tienen en el carrito de compras junto con su correo</p>
-  <p>4.- En esta pagina tambien se pueden visualizar el mayor precio que tiene especicacion, tambien el menor y el promedio de los productos que tienen especificación</p>
-  <p>IMPORTANTE: LO QUE SE MUESTRA EN ESTO NO TIENE QUE VER CON LAS COMPRAS ORIGINALES YA QUE ESTAS SON COMPRAS QUE ESTAN SIENDO PROCESADAS EN EL MOMENTO NO LAS HECHAS</p>
-  
-  <div class='col-md-6 mt-4 text-center'>
-    <table class='table table-striped' id="usuario.correo">
-        <tr>
+
+<div class='col-md-6 mt-4'>
+
+  <div class='w3-striped'>
+    <table class="w3-table-all w3-centered w3-card-4">
+      <h3>Cliente con mayor numero de compras</h3>
+      <tr class="w3-blue">
             <th>Correo</th>
             <th>Numero Pedidos</th>
         </tr>
@@ -62,9 +59,11 @@
         <% } %>
     </table>
   </div>
-    <div class='col-md-6 mt-4 text-center'>
-      <table class='table table-striped'>
-          <tr>
+
+    <div class='w3-striped'>
+      <table class="w3-table-all w3-centered w3-card-4">
+        <h3>estadisticas generales de los productos</h3>
+        <tr class="w3-blue">
               <th>Menor precio productos</th>
               <th>Mayor precio Productos</th>
               <th>El promedio de los productos</th>
@@ -85,30 +84,65 @@
           </tr>
       <% } %>
       </table>
-      <div class='col-md-6 mt-4 text-center'>
-        <table class='table table-striped'>
-            <tr>
-                <th>Producto mas vendido</th>
-                <th>id del producto</th>
-                <th>Producto menos vendido</th>
-                <th>id del producto</th>
+    </div>
+    
+    <br>
+
+     <div class=' w3-striped'>
+        <h2 class="w3-section">Instrucciones: </h2>
+        <p>1.- En la parte superior izquierda se podra encontrar con los productos, personas y compras, para añadir actualizar y modificar</p>
+        <p>2.- En el caso de compras usted no añade compras pero si puede modificarse si lo amerita </p>
+        <p>3.- dentro de esta pagina usted puede ver tambien los pedidos de las personas que tienen en el carrito de compras junto con su correo</p>
+        <p>4.- En esta pagina tambien se pueden visualizar el mayor precio que tiene especicacion, tambien el menor y el promedio de los productos que tienen especificación</p>
+        <p>IMPORTANTE: LO QUE SE MUESTRA EN ESTO NO TIENE QUE VER CON LAS COMPRAS ORIGINALES YA QUE ESTAS SON COMPRAS QUE ESTAN SIENDO PROCESADAS EN EL MOMENTO NO LAS HECHAS</p>
+      </div>
+    </div>
+    <div class='col-md-6 mt-4'>
+      <table class="w3-table-all w3-centered w3-card-4">
+          <h3>Producto mas vendido</h3>
+           <tr class="w3-blue">
+                <th>Numero de ventas</th>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Imagen</th>
             </tr>
+
             <% for(var i = 0; i < datos4.length; i++){ %>
                 <tr>
                  <td><%=datos4[i].ProductoMaximo%></td>
                  <td><%=datos4[i].id_producto%></td>
-                
-            <% } %>
-            <% for(var i = 0; i < datos5.length; i++){ %>
-              
-              <td><%=datos5[i].ProductoMinimo%></td>
-              <td><%=datos5[i].id_producto%></td>
-              
+                 <td><%=datos4[i].nombre%></td>
+                 <td ><img style="max-width:50%;max-height:50px" src= "<%=datos4[i].jpg%>" ></td>
+                </tr>
+             <% } %>     
+         </table>        
+        </div>
+
+
+
+
+    <div class='col-md-6 mt-4 w3-striped'>
+      <table class="w3-table-all w3-centered w3-card-4">
+        <h3>Productos menos vendidos</h3>
+        <tr class="w3-blue">                    
+          <th>id</th>
+          <th>Nombre</th>
+          <th>precio</th>
+          <th>Imagen</th>
+        </tr>
+          <% for(var i = 0; i < datos5.length; i++){ %>
+            <tr> 
+            <td><%=datos5[i].id_producto%></td>
+            <td><%=datos5[i].nombre%></td>
+            <td><%=datos5[i].precio%></td>
+            <td ><img style="max-width:50%;max-height:50px" src= "<%=datos5[i].jpg%>" ></td>
+            </tr>
           <% } %>
-        </table>
+      </table> 
+     
+    </div>
 
 
-<br> 
 
 
 <script>
