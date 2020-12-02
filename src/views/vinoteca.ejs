@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Vinoteca Online</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -34,10 +34,12 @@
   <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
     <div class="w3-container w3-display-container w3-padding-16">
       <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-      <h3 class="w3-wide"> <img src="logo.png"  style="width:100%"></h3>
+      <h3 class="w3-wide"> <a src="logo.png" href="/" style="max-width:90%"></a></h3>
     </div>
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-     
+     <h>
+       filtro
+     </h>
       <p>Escriba un precio para mostrar los vinos que sean superior a los montos puestos, siempre y cuando esten en stock y tengan especificacion</p>
 <p>Si no se muestran vinos es porque no hay disponibles dentro de lo que usted puso</p>
 <form action = "/precio"  method="post" class="card-body">
@@ -46,9 +48,13 @@
     <input id="precio" type="number" class="form-control" name="precio" placeholder="Precio">
     <input type="submit" class="btn btn-primary" value="Confirmar"></input>
   </div>
+
+
+  
 </form>
   <p>Escriba dos precios para mostrar los vinos que esten entre ese rango, si no se muestra es porque no hay disponibles dentro de lo que usted puso</p>
-  <form action = "/preciosRangos"  method="post" class="card-body">
+  
+   <form action = "/preciosRangos"  method="post" class="card-body">
     <div class="input-group ">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <input id="RangoMenor" type="number" class="form-control" name="RangoMenor" placeholder="Rango menor">
@@ -62,9 +68,27 @@
 
 
     </div>
-
     </div>
-   
+
+  <div class="row">
+    <div class="w3-col w3-container" style="max-width:50%">
+      <form action = "/preciosRangos"  method="post" class="card-body">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="RangoMenor" type="number" class="form-control" name="RangoMenor" placeholder="Rango menor">
+    </div>
+    <div class="w3-col w3-container" style="max-width:50%">
+      
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <br>
+      <input id="RangoMayor" type="number" class="form-control" name="RangoMayor" placeholder="Rango mayor">
+      
+      
+      
+    </div>
+    
+  </div>
+   <input type="submit" class="btn btn-primary" value="Confirmar"></input>
+      </form>
   </nav>
 
 
@@ -74,7 +98,7 @@
 
   <!-- Top menu on small screens -->
   <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-    <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
+    <div class="w3-bar-item w3-padding-24 w3-wide">Vinoteca online</div>
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i
         class="fa fa-bars"></i></a>
   </header>
@@ -89,51 +113,46 @@
     <!-- Push down content on small screens -->
     <div class="w3-hide-large" style="margin-top:83px"></div>
 
-    <!-- Top header -->
-    <header class="w3-container w3-xlarge">
-      <p class="w3-left">Vinos</p>
-      <p class="w3-right">
-        <i class="fa fa-shopping-cart w3-margin-right"></i>
-        <i class="fa fa-search"></i>
-      </p>
-    </header>
 
     <!-- Image header -->
     <div class="w3-display-container w3-container">
       <img src="https://www.devinosyvides.com.ar/fotos/cache/707/devinos-foto666.jpg" alt="Jeans" style="width:100%">
       <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
         <h1 class="w3-jumbo w3-hide-small">Vinoteca</h1>
-        <h1 class="w3-hide-large w3-hide-medium">Vinoteca</h1>
-        <h1 class="w3-hide-small">COLLECTION 1995</h1>
-        <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">comprar ahora</a></p>
+        <h1 class="w3-hide-large w3-hide-medium">Vinoteca en modo celu</h1>
+        <h1 class="w3-hide-small">cosecha 1954</h1>
       </div>
     </div>
-
-    <div class="w3-container w3-text-grey" id="jeans">
-      <p>8 items</p>
-    </div>
+  
+  <div class="w3-container w3-padding w3-section w3-light-grey w3-center">
+    <h1 class="w3-xlarge">Productos</h1>
+  </div>
 
  <!-- Product grid -->
-    <div class="w3-row ">
-    
+    <div class="container">
+      <div class="row">
+        <br> 
       <% for(var i = 0; i < datos.length; i++){ %>
-        <% if(datos[i].activo){ %> 
-          <div class="w3-col l3 s6">
-            <div class="w3-container">
-              <div class="w3-display-container">
-                <img src="<%= datos[i].jpg %>" style="width:100%">
-                <span class="w3-tag w3-display-topleft">New</span>
-                <div class="w3-display-middle w3-display-hover">
-                  <button class="w3-button w3-black" onclick="document.getElementById('Form_compra').style.display='block'" >Comprar ahora <i class="fa fa-shopping-cart" ></i></button>
+        <% if(datos[i].activo){ %>
+          <div class="w3-col w3-container" style="max-width:230px;max-height:300px ">
+              <div class="w3-card-4 w3-center">
+                <div class="w3-display-container w3-hover-opacity">
+                  <img style="max-width:190px;max-height:200px" src="<%= datos[i].jpg %>">
+                  <div class="w3-display-middle w3-display-hover">
+                    <button class="w3-button w3-black" onclick="document.getElementById('Form_compra').style.display='block'" >Comprar ahora <i class="fa fa-shopping-cart" ></i></button>
+                  </div>
+                  <div class=" w3-center">
+                    <p><%= datos[i].nombre %><br>
+                    <b><%= datos[i].precio%></b><br>              
+                    <b><%= datos[i].contenido%></b></p>
+                  </div>
                 </div>
               </div>
-              <p><%= datos[i].nombre %><br><b><%= datos[i].precio%></b><br><b><%= datos[i].contenido%></b></p>
-            </div>
-          </div>
+            </div>   
         <% } %>
       <% } %> 
     </div>
-
+  </div>  
     <div class="w3-black w3-center w3-padding-24">Powered by Grupo 2</div>
     <!-- End page content -->
   </div>
