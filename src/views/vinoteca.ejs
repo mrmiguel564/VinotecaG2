@@ -50,16 +50,8 @@
            
       </div>
       <input type="submit" class="btn btn-primary" value="Confirmar"></input> </form>
-
-
-      
     </div> 
- 
-  </nav>
-
-
-
-
+   </nav>
 
 
   <!-- Top menu on small screens -->
@@ -81,9 +73,7 @@
              
         </div>
         <input type="submit" class="btn btn-primary" value="Confirmar"></input> </form>
-  
-  
-        
+          
       </div>   
 
   </header>
@@ -114,12 +104,12 @@
   </div>
 
  <!-- Product grid -->
-    <div class="container">
-      <div class="row">
+    <div class="container W3-center">
+      <div class="row w3-center">
         <br> 
       <% for(var i = 0; i < datos.length; i++){ %>
         <% if(datos[i].activo){ %>
-          <div class="w3-col w3-container" style="max-width:230px;max-height:300px ">
+          <div class="w3-col w3-container w3-center" style="max-width:230px;max-height:300px ">
               <div class="w3-card-4 w3-center">
                 <div class="w3-display-container w3-hover-opacity">
                   <img style="max-width:190px;max-height:200px" src="<%= datos[i].jpg %>">
