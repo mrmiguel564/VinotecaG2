@@ -31,13 +31,13 @@
 <body class="w3-content" style="max-width:1200px">
 
   <!-- Sidebar/menu -->
-  <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+  <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:350px" id="mySidebar">
     <div class="w3-container w3-display-container w3-padding-16">
       <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
       
     </div> 
     <h3 class= "w3-wide"><a href="/"><img src="logo.png"  style="max-width:90%"></img></a></h3>
-    <div class= "w3-round-large w3-panel w3-container w3-card-4 w3-black w3-margin " >
+    <div class= "w3-round-large w3-panel w3-container w3-card-4 w3-black w3-margin w3-center " >
       <BR>
       <form action = "/preciosRangos"  method="post" >
       <h2>Filtrar</h2>
@@ -71,7 +71,7 @@
     id="myOverlay"></div>
 
   <!-- !PAGE CONTENT! -->
-  <div class="w3-main" style="margin-left:250px">
+  <div class="w3-main w3-center" style="margin-left:350px">
 
     <!-- Push down content on small screens -->
     <div class="w3-hide-large" style="margin-top:83px"></div>
@@ -82,7 +82,9 @@
       <img src="https://www.devinosyvides.com.ar/fotos/cache/707/devinos-foto666.jpg" alt="Jeans" style="width:100%">
       <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
         <h1 class="w3-jumbo w3-hide-small">Vinoteca</h1>
-        <h1 class="w3-hide-large w3-hide-medium">Vinoteca en modo celu</h1>
+
+        <h1 class="w3-hide-large w3-hide-small">Vinoteca no tan chiquita</h1>
+        <h1 class="w3-hide-large w3-hide-medium">VINOTECA CHIQUITA</h1>
         <h1 class="w3-hide-small">cosecha 1954</h1>
       </div>
     </div>
@@ -92,18 +94,19 @@
   </div>
 
  <!-- Product grid -->
-    <div class="container W3-center">
-      <div class="row w3-center">
+    <div class="container">
+      <div class="row">
         <br> 
       <% for(var i = 0; i < datos.length; i++){ %>
         <% if(datos[i].activo){ %>
-          <div class="w3-col w3-container w3-center" style="max-width:230px;max-height:300px ">
-              <div class="w3-card-4 w3-center">
-                <div class="w3-display-container w3-hover-opacity">
-                  <img style="max-width:190px;max-height:200px" src="<%= datos[i].jpg %>">
+         
+             <div class="w3-col w3-container" style="max-width:210px;max-height:300px;">
+              <div class="w3-hide-small w3-card-4 w3-center">
+                <div class="w3-hide-small w3-display-container w3-hover-opacity">
+                  <img style="max-width:178px;max-height:200px" src="<%= datos[i].jpg %>">
                   <div class="w3-display-middle w3-display-hover">
                     <button class="w3-button w3-black" onclick="document.getElementById('Form_compra').style.display='block'" >Comprar ahora <i class="fa fa-shopping-cart" ></i></button>
-                  </div>
+                  </div> 
                   <div class=" w3-center">
                     <p><%= datos[i].nombre %><br>
                     <b><%= datos[i].precio%></b><br>              
@@ -111,7 +114,26 @@
                   </div>
                 </div>
               </div>
-            </div>   
+            </div>
+
+              <div class="w3-hide-large w3-hide-medium w3-col w3-container" style="max-width:auto;max-height:300px;">
+                <div class=" w3-card-4 w3-center">
+                <div class="  w3-hide-medium w3-display-container w3-hover-opacity " >
+                  <a class="w3-button" onclick="document.getElementById('Form_compra').style.display='block'"><img style="max-width:138px;max-height:200px" src="<%= datos[i].jpg %>"> </a>
+                  <div class="w3-display-middle w3-display-hover">
+                    </div>
+                  <div class=" w3-center">
+                    <p><%= datos[i].nombre %><br>
+                    <b><%= datos[i].precio%></b><br>              
+                    <b><%= datos[i].contenido%></b></p>
+                  </div>
+                </div>
+              </div>
+
+              </div>
+              
+          
+         
         <% } %>
       <% } %> 
     </div>
