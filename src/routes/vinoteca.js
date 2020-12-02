@@ -371,16 +371,16 @@ router.post('/preciosRangos', (req,res,next) =>{
     if(req.isAuthenticated()) return next();
     res.redirect('/login');
 
-    //res.render('index.ejs');
+   
     },(req,res) =>{
     
-    //const { dinero } = req.params;
+    
     var {RangoMenor,RangoMayor} = datitos =  req.body;
     if(RangoMayor==''){
         datitos.RangoMayor=999999;
-        console.log("weas")
+       
     }
-    console.log(datitos)
+    
     conn.query('select producto.nombre, producto.jpg, producto.activo, producto.precio from producto join stock on producto.id_producto = stock.id_producto GROUP by producto.id_producto having producto.precio BETWEEN ? and ?', [datitos.RangoMenor, datitos.RangoMayor], (err, resp, campos) => {
             res.render('vinoteca.ejs',   { datos: resp });
     });
