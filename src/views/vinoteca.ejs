@@ -34,7 +34,7 @@
   <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
     <div class="w3-container w3-display-container w3-padding-16">
       <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-      <h3 class="w3-wide"> <a src="logo.png" href="/" style="max-width:90%"></a></h3>
+      <h3 class="w3-wide"><a href="/"><img src="logo.png"  style="max-width:90%"></img></a></h3>
     </div>
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
      <h>
@@ -52,43 +52,18 @@
 
   
 </form>
-  <p>Escriba dos precios para mostrar los vinos que esten entre ese rango, si no se muestra es porque no hay disponibles dentro de lo que usted puso</p>
-  
-   <form action = "/preciosRangos"  method="post" class="card-body">
-    <div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="RangoMenor" type="number" class="form-control" name="RangoMenor" placeholder="Rango menor">
-    </div>
-    <div class="input-group ">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="RangoMayor" type="number" class="form-control" name="RangoMayor" placeholder="Rango mayor">
-    </div>
-    <input type="submit" class="btn btn-primary" value="Confirmar"></input>
-  </form>
-
-
     </div>
     </div>
-
-  <div class="row">
-    <div class="w3-col w3-container" style="max-width:50%">
-      <form action = "/preciosRangos"  method="post" class="card-body">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="RangoMenor" type="number" class="form-control" name="RangoMenor" placeholder="Rango menor">
-    </div>
-    <div class="w3-col w3-container" style="max-width:50%">
-      
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <br>
-      <input id="RangoMayor" type="number" class="form-control" name="RangoMayor" placeholder="Rango mayor">
-      
-      
+    <form action = "/preciosRangos"  method="post" class="card-body">
+    <div class="input-group mb-3 input-group-sm" >
+      <div class="input-group-prepend ">
+        <span class="input-group-text">Precio</span>
+           </div>
+      <input id="RangoMenor" type="number" class="form-control w3-input w3-border" name="RangoMenor" placeholder="Min">
+      <input id="RangoMayor" type="number" class="form-control w3-input w3-border" name="RangoMayor" placeholder="Max">
       
     </div>
-    
-  </div>
-   <input type="submit" class="btn btn-primary" value="Confirmar"></input>
-      </form>
+    <input type="submit" class="btn btn-primary" value="Confirmar"></input> </form>
   </nav>
 
 
