@@ -31,39 +31,30 @@
 <body class="w3-content" style="max-width:1200px">
 
   <!-- Sidebar/menu -->
-  <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
-    <div class="w3-container w3-display-container w3-padding-16">
-      <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-      <h3 class="w3-wide"><a href="/"><img src="logo.png"  style="max-width:90%"></img></a></h3>
-    </div>
-    <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-     <h>
-       filtro
-     </h>
-      <p>Escriba un precio para mostrar los vinos que sean superior a los montos puestos, siempre y cuando esten en stock y tengan especificacion</p>
-<p>Si no se muestran vinos es porque no hay disponibles dentro de lo que usted puso</p>
-<form action = "/precio"  method="post" class="card-body">
-  <div class="input-group ">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-    <input id="precio" type="number" class="form-control" name="precio" placeholder="Precio">
-    <input type="submit" class="btn btn-primary" value="Confirmar"></input>
-  </div>
+  <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style= "width:250px" id="mySidebar">
+  <div class="w3-container w3-display-container">
+     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+     
+    </div> 
+    <h3 class= "w3-wide"><a href="/"><img src="logo.png"  style="max-width:90%"></img></a></h3>
+    <div class= "w3-round-large w3-panel w3-container w3-card-4 w3-black " style="z-index:3;width:245px">
+      <br>
+      <h2>Filtrar</h2>
+     <form action = "/preciosRangos"  method="post" class="card-body">
+      <div class="input-group mb-3 input-group-sm" > 
+        <div class="input-group-prepend ">
+          <span class="input-group-text">Precio</span>
+             </div>
+        <input id="RangoMenor" type="number" class="form-control w3-input w3-border" name="RangoMenor" placeholder="Min">
+        <input id="RangoMayor" type="number" class="form-control w3-input w3-border" name="RangoMayor" placeholder="Max">
+           
+      </div>
+      <input type="submit" class="btn btn-primary" value="Confirmar"></input> </form>
 
 
-  
-</form>
-    </div>
-    </div>
-    <form action = "/preciosRangos"  method="post" class="card-body">
-    <div class="input-group mb-3 input-group-sm" >
-      <div class="input-group-prepend ">
-        <span class="input-group-text">Precio</span>
-           </div>
-      <input id="RangoMenor" type="number" class="form-control w3-input w3-border" name="RangoMenor" placeholder="Min">
-      <input id="RangoMayor" type="number" class="form-control w3-input w3-border" name="RangoMayor" placeholder="Max">
       
-    </div>
-    <input type="submit" class="btn btn-primary" value="Confirmar"></input> </form>
+    </div> 
+ 
   </nav>
 
 
@@ -75,7 +66,26 @@
   <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
     <div class="w3-bar-item w3-padding-24 w3-wide">Vinoteca online</div>
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i
-        class="fa fa-bars"></i></a>
+        class="fa fa-bars"></i>
+      </a>
+      <div class= "w3-round-large w3-panel w3-container w3-card-4 w3-black " style="z-index:3;width:80%">
+        
+        
+       <form action = "/preciosRangos"  method="post" class="card-body">
+        <h2>Filtrar</h2><div class="input-group mb-3 input-group-XM w3-xxlarge" > 
+          <div class="input-group-prepend ">
+            <span class="input-group-text">Precio</span>
+               </div>
+          <input id="RangoMenor" type="number" class="form-control w3-input w3-border" name="RangoMenor" placeholder="Min">
+          <input id="RangoMayor" type="number" class="form-control w3-input w3-border" name="RangoMayor" placeholder="Max">
+             
+        </div>
+        <input type="submit" class="btn btn-primary" value="Confirmar"></input> </form>
+  
+  
+        
+      </div>   
+
   </header>
 
   <!-- Overlay effect when opening sidebar on small screens -->
