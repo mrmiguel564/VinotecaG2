@@ -235,9 +235,9 @@ router.get('/admin', (req,res,next) => {
     }
     
     conn.query('SELECT usuario.correo, Count(producto_carrito.id_producto) AS NumeroPedidos FROM producto_carrito LEFT JOIN usuario ON producto_carrito.correo=usuario.correo GROUP BY usuario.nombre', (err,resp,campos) => {
-        conn.query('SELECT MIN(producto.precio) as MenorPrecio from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp1,campos) => {
-            conn.query('SELECT MAX(producto.precio) as MayorPrecio from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp2,campos) => {
-                conn.query('SELECT AVG(producto.precio) as ElPromedioDeLosPrecios from producto join especificacion on producto.id_producto = especificacion.id_producto', (err,resp3,campos) => {
+        conn.query('SELECT MIN(producto.precio) as MenorPrecio from producto join stock on producto.id_producto = stock.id_producto', (err,resp1,campos) => {
+            conn.query('SELECT MAX(producto.precio) as MayorPrecio from producto join stock on producto.id_producto = stock.id_producto', (err,resp2,campos) => {
+                conn.query('SELECT AVG(producto.precio) as ElPromedioDeLosPrecios from producto join stock on producto.id_producto = stock.id_producto', (err,resp3,campos) => {
                     conn.query('select * , max(cantidad_producto) as ProductoMaximo from (producto_carrito INNER JOIN producto)', (err,resp4,campos) => { 
                         conn.query('SELECT * FROM producto WHERE id_producto NOT IN (SELECT id_producto FROM productos_compra)', (err,resp5,campos) => {     
                      res.render('admin.ejs',   { datos: resp, datos1: resp1, datos2: resp2, datos3: resp3, datos4: resp4, datos5:resp5});
