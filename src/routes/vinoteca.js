@@ -4,11 +4,7 @@ const router = express.Router();
 const conn = require('../database'); // Buscando el archivo de conf de la base de datos
 const multer = require('multer');
 
-router.get('/', (req,res,next) => {
-    if(req.isAuthenticated()) return next();
-    res.redirect('/login');
-    //res.render('index.ejs');
-    },(req,res) =>{
+router.get('/', (req,res) => {
     conn.query('Select * from producto', (err,resp,campos) => {
         //console.log(resp);
         res.render('vinoteca.ejs',   { datos: resp });
@@ -351,12 +347,7 @@ router.get('/eliminar/:id_producto', (req,res,next) =>{
 });
 
 
-router.post('/precio', (req,res,next) =>{
-    if(req.isAuthenticated()) return next();
-    res.redirect('/login');
-
-    //res.render('index.ejs');
-    },(req,res) =>{
+router.post('/precio',(req,res) =>{
     
     //const { dinero } = req.params;
     const prueba = req.body;
@@ -367,14 +358,8 @@ router.post('/precio', (req,res,next) =>{
     });
 });
 
-router.post('/preciosRangos', (req,res,next) =>{
-    if(req.isAuthenticated()) return next();
-    res.redirect('/login');
-
-   
-    },(req,res) =>{
-    
-    
+router.post('/preciosRangos', (req,res) =>{
+        
     var {RangoMenor,RangoMayor} = datitos =  req.body;
     if(RangoMayor==''){
         datitos.RangoMayor=999999;

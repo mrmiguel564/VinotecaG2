@@ -256,9 +256,6 @@ conn.query("drop role 'r1'", (err,res,campos) =>{
 	console.log(res);
 });
 
-conn.query("drop user 'sonic'@'localhost'", (err,res,campos) =>{
-	if(err) throw err;
-	console.log(res);
-});
+
 
 module.exports = conn;
